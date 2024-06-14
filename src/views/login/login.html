@@ -4,17 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
-    <meta
-      name="author"
-      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
-    />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
     <meta name="generator" content="Hugo 0.84.0" />
     <title>Login</title>
 
-    <link
-      rel="canonical"
-      href="https://getbootstrap.com/docs/5.0/examples/sign-in/"
-    />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/" />
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet" />
@@ -34,6 +28,7 @@
         }
       }
     </style>
+    <script src="login.js" type="module"></script>
 
     <!-- Custom styles for this template -->
     <link href="LoginPage.css" rel="stylesheet" />
@@ -41,38 +36,25 @@
   <body class="text-center">
     <main class="form-signin">
       <form>
+        <!--action="/api/login" method="POST" 테스트?-->
         <h1 class="h3 mb-3 fw-normal">high Five</h1>
 
         <div class="form-floating">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="Email"
-          />
+          <input type="email" class="form-control" id="emailInput" placeholder="Email" />
           <label for="floatingInput">아이디 또는 이메일을 입력해주세요</label>
         </div>
         <div class="form-floating">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
+          <input type="password" class="form-control" id="passwordInput" placeholder="Password" />
           <label for="floatingPassword">비밀번호를 입력해주세요</label>
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          로그인
-        </button>
+        <button class="w-100 btn btn-lg btn-primary" id="submitButton" type="submit">로그인</button>
 
         <div class="social-login">
           <a href="#"><img src="btnnK.png" /></a>
           <a href="#"><img src="btnnN.png" /></a>
         </div>
-        <p class="mt-5 mb-3 text-muted">
-          highfive가 처음이세요? <a href="/register">회원가입하기</a>
-        </p>
+        <p class="mt-5 mb-3 text-muted">highfive가 처음이세요? <a href="/register">회원가입하기</a></p>
       </form>
     </main>
   </body>
