@@ -1,0 +1,10 @@
+.table-custom tbody tr:nth-of-type(odd) {
+  background-color: #3300ff22;
+}
+.table-custom tbody tr:nth-of-type(even) {
+  background-color: #ffffff;
+}
+.table-custom thead {
+  background-color: #8461ff;
+  color: white;
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 페이지</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="product-manage.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">제품관리 페이지</h2>
+      <table class="table table-bordered table-custom">
+        <thead>
+          <tr>
+            <th scope="col"><input type="checkbox" onclick="toggle(this)" /></th>
+            <th scope="col">이미지</th>
+            <th scope="col">제품명</th>
+            <th scope="col">가격</th>
+            <th scope="col">카테고리(향 계열)</th>
+            <th scope="col">상세설명</th>
+            <th scope="col">제조사</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" name="select" /></td>
+            <td><img src="https://via.placeholder.com/50" alt="제품 이미지" /></td>
+            <td>대충향수이름</td>
+            <td>₩10,000</td>
+            <td>
+              <select class="form-control">
+                <option>기본</option>
+                <option>머스크</option>
+                <option>플로럴</option>
+                <option>프루티</option>
+                <option>우드</option>
+                <option>시트러스</option>
+              </select>
+            </td>
+            <td>파티용으로 쓰기 좋은 제품</td>
+            <td>샤넬</td>
+          </tr>
+
+          <tr>
+            <td><input type="checkbox" name="select" /></td>
+            <td><img src="https://via.placeholder.com/50" alt="제품 이미지" /></td>
+            <td>분위기좋은 향수</td>
+            <td>₩20,000</td>
+            <td>
+              <select class="form-control">
+                <option>기본</option>
+                <option>머스크</option>
+                <option>플로럴</option>
+                <option>프루티</option>
+                <option>우드</option>
+                <option>시트러스</option>
+              </select>
+            </td>
+            <td>나갈때 쓰기 좋은 제품</td>
+            <td>Calvin klein</td>
+          </tr>
+
+          <tr>
+            <td><input type="checkbox" name="select" /></td>
+            <td><img src="https://via.placeholder.com/50" alt="제품 이미지" /></td>
+            <td>멜론향수</td>
+            <td>₩40,000</td>
+            <td>
+              <select class="form-control">
+                <option>기본</option>
+                <option>머스크</option>
+                <option>플로럴</option>
+                <option>프루티</option>
+                <option>우드</option>
+                <option>시트러스</option>
+              </select>
+            </td>
+            <td>간단하게 쓰기 좋은 제품</td>
+            <td>melon</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      function toggle(source) {
+        checkboxes = document.getElementsByName('select');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+          checkboxes[i].checked = source.checked;
+        }
+      }
+    </script>
+  </body>
+</html>

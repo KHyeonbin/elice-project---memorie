@@ -114,6 +114,9 @@
             <tbody>
               <tr>
                 <td>
+                  <input type="checkbox" id="allcheck" />
+                </td>
+                <td>
                   <img
                     src="/"
                     alt="이미지"
@@ -131,6 +134,9 @@
                 <td>2</td>
               </tr>
               <tr>
+                <td>
+                  <input type="checkbox" id="allcheck" />
+                </td>
                 <td>
                   <img
                     src="/"
@@ -150,8 +156,13 @@
               </tr>
             </tbody>
           </table>
-        </div>
+          <div class="total-price">
+            <h3 style ="font-size: 35px; font-weight: bold; color: rgb(105, 105, 105)">총 주문금액: 30,000원</h3>
+          </div>
       </section>
+      
+
+    </div>
     </div>
 
     <div class="mypage-container">
@@ -160,26 +171,23 @@
           <span>배송지확인</span>
         </h2>
 
-        <div class="mypage_user-info-container">
-            <div class="check-title"></div>
-            <div class="check-info">
-              <div class="check-name">
-                <span>이름</span>
-                <span>홍길동</span>
-              </div>
-              <div class="check-phone">
-                <span>전화번호</span>
-                <span>010-1234-5678</span>
-              </div>
-              <div class="check-address">
-                <span>주소</span>
-                <span>서울특별시 강남구 역삼동</span>
-              </div>
-              <button type="button" class="btn btn-danger">수정하기</button>
-            </div>
+        <div class="checkadress-info-container">
+          <div class="checkadress-content">
+            <p style ="font-size: 35px; font-weight: bold; color: rgb(105, 105, 105);">이름: 엘리스</p>
+            <h3 style="font-weight: bold; color: rgb(105, 105, 105)">주소: 서울시 구구구 로로로 123</h3>
+          </div>
+          <div class="edit-button">
+            <button type="button" class="btn btn-primary edit-btn">
+              <h3>편집</h3>
+            </button>
           </div>
         </div>
       </section>
+    </div>
+    <div class="orderbutton">
+      <button type="button" class="btn btn-primary order-btn ">
+        <h2>주문하기</h2>
+      </button>
     </div>
 
     <script
