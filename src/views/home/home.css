@@ -11,9 +11,38 @@
   padding: 10px;
 }
 
-.greeting {
-  cursor: pointer;
-  border: 1px solid blue;
-  padding: 10px;
-  margin-left: 3rem;
+.arti {
+  width: 250px;
+}
+.container {
+  margin-top: 70px;
+  max-width: 1500px;
+}
+
+.img-item {
+  margin: auto;
+  display: block;
+
+  width: 350px;
+  height: 250px;
+}
+
+.column {
+  font-size: 20px;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 50px;
+}
+.page-link {
+  font-size: 20px;
+}
+/* footer.css */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-menu {
+  width: 90%;
 }
