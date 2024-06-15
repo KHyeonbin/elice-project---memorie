@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Information</title>
+    <style>
+      .container {
+        border: 2px solid #d4d4d4;
+        width: 300px;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .product-info img {
+        width: 100px;
+        height: 100px;
+        background-color: #f0f0f0;
+        display: block;
+        margin: 0 auto;
+      }
+      .product-info {
+        text-align: center;
+      }
+      .product-info h2 {
+        font-size: 18px;
+      }
+      .product-info p {
+        font-size: 18px;
+      }
+      .price {
+        color: red;
+        font-size: 18px;
+      }
+      .quantity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+      }
+      .quantity input {
+        width: 40px;
+        text-align: center;
+      }
+      .description {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 100px;
+        text-align: center;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+      }
+      .buttons button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="product-info">
+        <img src="img-placeholder.png" alt="Product Image" />
+        <h2>청바지</h2>
+        <p>"이번 여름은 시원하게"</p>
+        <p>가격: <span class="price" id="total-price">13,000원</span></p>
+      </div>
+      <div class="quantity">
+        <button onclick="decreaseQuantity()">-</button>
+        <input type="number" id="quantity" value="3" oninput="updatePrice()" />
+        <button onclick="increaseQuantity()">+</button>
+      </div>
+      <div class="description">제품설명칸</div>
+      <div class="buttons">
+        <button onclick="addToCart()">장바구니 추가</button>
+      </div>
+    </div>
+
+    <script>
+      const unitPrice = 13000;
+
+      function decreaseQuantity() {
+        const quantity = document.getElementById('quantity');
+        if (quantity.value > 1) {
+          quantity.value = parseInt(quantity.value) - 1;
+          updatePrice();
+        }
+      }
+
+      function increaseQuantity() {
+        const quantity = document.getElementById('quantity');
+        quantity.value = parseInt(quantity.value) + 1;
+        updatePrice();
+      }
+
+      function updatePrice() {
+        const quantity = document.getElementById('quantity').value;
+        const totalPrice = unitPrice * quantity;
+        document.getElementById('total-price').textContent = totalPrice.toLocaleString('ko-KR') + '원';
+      }
+
+      function addToCart() {
+        alert('장바구니에 추가되었습니다.');
+      }
+
+      function buyNow() {
+        alert('바로구매가 진행되었습니다.');
+      }
+
+      // 초기 가격 업데이트
+      updatePrice();
+    </script>
+  </body>
+</html>
