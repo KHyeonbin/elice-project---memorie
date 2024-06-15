@@ -122,4 +122,14 @@ userRouter.patch('/users/:userId', loginRequired, async function (req, res, next
   }
 });
 
+userRouter.get('/mypage', loginRequired, async (req, res, next) => {
+  try {
+    const userInfo = await userService.getUserById(userId);
+
+    res.status(200).json(userInfo);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { userRouter };
