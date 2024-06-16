@@ -1,43 +1,43 @@
 import { Schema } from 'mongoose';
 
-const Schema = mongoose.Schema;
+const ProductSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    manufacturer: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
+      default: '',
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      min: [0, '0보다 작은 값은 설정이 불가합니다.'],
+    },
+    price: {
+      type: Number,
+      required: true,
+      min: [0, '0보다 작은 값은 설정이 불가합니다.'],
+    },
+  },
+  {
+    collection: 'products',
+    timestamps: true,
+  },
+);
 
-const productSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  manufacturer: {
-    type: String,
-    required: true,
-  },
-  shortDescription: {
-    type: String,
-    required: true,
-  },
-  detailDescription: {
-    type: String,
-    required: true,
-  },
-  imageUrl: {
-    type: String,
-  },
-  inventory: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  keywords: {
-    type: [String],
-    required: true,
-  },
-});
-
-export { productSchema };
+export { ProductSchema };

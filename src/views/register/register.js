@@ -1,4 +1,3 @@
-import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
@@ -8,21 +7,24 @@ const passwordInput = document.querySelector('#passwordInput');
 const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
 const submitButton = document.querySelector('#submitButton');
 
-addAllElements();
-addAllEvents();
+const toggleSwitch = document.getElementById('toggleSwitch');
+const loginType = document.getElementById('loginType');
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-async function addAllElements() {}
+toggleSwitch.addEventListener('change', function () {
+  if (this.checked) {
+    loginType.textContent = '일반 회원가입';
+  } else {
+    loginType.textContent = '관리자 회원가입';
+  }
+});
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-  submitButton.addEventListener('click', handleSubmit);
-}
+submitButton.addEventListener('click', handleSubmit);
 
 // 회원가입 진행
 async function handleSubmit(e) {
   e.preventDefault();
 
+  const isUser = toggleSwitch.checked; // true => 사용자, false => 관리자
   const fullName = fullNameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
@@ -48,9 +50,25 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = { fullName, email, password };
+    const data = JSON.stringify({ isUser, fullName, email, password });
 
-    await Api.post('/users/register', data);
+    if (isUser) {
+      await fetch('/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data,
+      });
+    } else {
+      await fetch('/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data,
+      });
+    }
 
     alert(`정상적으로 회원가입되었습니다.`);
 
