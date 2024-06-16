@@ -1,9 +1,7 @@
 import { Schema } from 'mongoose';
 
-const Schema = mongoose.Schema;
-
-const productSchema = new Schema({
-  name: {
+const ProductSchema = new Schema({
+  title: {
     type: String,
     required: true,
   },
@@ -15,29 +13,22 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  shortDescription: {
-    type: String,
-    required: true,
-  },
-  detailDescription: {
+  description: {
     type: String,
     required: true,
   },
   imageUrl: {
     type: String,
-  },
-  inventory: {
-    type: Number,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
     required: true,
   },
-  keywords: {
-    type: [String],
-    required: true,
+  quantity: {
+    type: Number,
+    required: false,
   },
 });
 
-export { productSchema };
+export { ProductSchema };
