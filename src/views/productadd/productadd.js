@@ -2,7 +2,7 @@ import * as Api from '/api.js';
 
 // 요소(element), input 혹은 상수 (HTML의 폼 입력요소 변수에 할당)
 const nameInput = document.querySelector('#nameInput');
-const categoryInput = document.querySelector('#categorySelectBox');
+const categorySelectBox = document.querySelector('#categorySelectBox');
 const descriptionInput = document.querySelector('#descriptionInput');
 const imageInput = document.querySelector('#imageInput');
 const priceInput = document.querySelector('#priceInput');

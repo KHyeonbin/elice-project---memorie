@@ -40,9 +40,10 @@ productRouter.post('/product', async (req, res, next) => {
   }
 });
 
+//상품조회 api
 productRouter.get('/productlist', async (req, res, next) => {
   try {
-    const products = await userProduct.getProducts();
+    const productInfo = await productService.getProducts();
 
     res.status(200).json(productInfo);
   } catch (error) {
