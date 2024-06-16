@@ -39,8 +39,15 @@
   <body>
     <main class="form-signin">
       <form>
-        <!--action="/api/login" method="POST" 테스트?-->
         <h1 class="h3 mb-3 fw-normal">high Five</h1>
+
+        <div class="container mt-5">
+          <label class="custom-toggle">
+            <input type="checkbox" id="toggleSwitch" checked />
+            <span class="slider"></span>
+          </label>
+          <p id="loginType">일반 로그인</p>
+        </div>
 
         <div class="form-floating">
           <input type="email" class="form-control" id="emailInput" placeholder="Email" />
