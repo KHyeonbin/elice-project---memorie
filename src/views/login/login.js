@@ -38,13 +38,7 @@ async function handleSubmit(e) {
   // 로그인 api 요청
   try {
     const data = { isUser, email, password };
-    let result;
-
-    if (isUser) {
-      result = await Api.post('/users/login', data);
-    } else {
-      result = await Api.post('/admin/login', data);
-    }
+    const result = isUser ? await Api.post('/users/login', data) : await Api.post('/admin/login', data);
 
     const token = result.token;
 
@@ -54,14 +48,7 @@ async function handleSubmit(e) {
 
     alert(`정상적으로 로그인되었습니다.`);
 
-    // 로그인 성공
-
-    // 기본 페이지로 이동
-    if (isUser) {
-      window.location.href = '/';
-    } else {
-      window.location.href = '/admin';
-    }
+    window.location.href = isUser ? '/' : '/admin';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
