@@ -36,7 +36,7 @@ async function handleSubmit(e) {
   const isManufacturerValid = manufacturer.length >= 2;
 
   if (!isNameValid || !isManufacturerValid) {
-    return alert('이름은 2글자 이상, 제조사는 4글자 이상이어야 합니다.');
+    return alert('이름은 4글자 이상, 제조사는 2글자 이상이어야 합니다.');
   }
 
   // 상품등록 api 요청
