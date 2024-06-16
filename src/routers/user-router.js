@@ -16,12 +16,11 @@ userRouter.post('/register', async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const fullName = req.body.fullName;
-    const email = req.body.email;
-    const password = req.body.password;
+    const { isUser, fullName, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
-    const newUser = await userService.addUser({
+    const newUser = await memberService.addMember({
+      isUser,
       fullName,
       email,
       password,

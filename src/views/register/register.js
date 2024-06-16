@@ -17,23 +17,16 @@ toggleSwitch.addEventListener('change', function () {
   } else {
     loginType.textContent = '관리자 회원가입';
   }
+  // toggleSwitch.checked = !toggleSwitch.checked;
 });
 
-addAllElements();
-addAllEvents();
-
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-async function addAllElements() {}
-
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-  submitButton.addEventListener('click', handleSubmit);
-}
+submitButton.addEventListener('click', handleSubmit);
 
 // 회원가입 진행
 async function handleSubmit(e) {
   e.preventDefault();
 
+  const isUser = toggleSwitch.checked; // true => 사용자, false => 관리자
   const fullName = fullNameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
@@ -59,9 +52,20 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = { fullName, email, password };
+    const data = { isUser, fullName, email, password };
+    let result;
 
-    await Api.post('/users/register', data);
+    if (isUser) {
+      result = await fetch('/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data,
+      });
+    } else {
+      result = await Api.post('/admin/register', data);
+    }
 
     alert(`정상적으로 회원가입되었습니다.`);
 
