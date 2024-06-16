@@ -1,0 +1,30 @@
+/* Default CSS */
+* {
+  max-width: 600px;
+  box-sizing: border-box;
+  align-content: center;
+}
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+}
+
+.header-logo {
+  text-align: center;
+}
+
+.header-links {
+  text-align: right;
+}
+
+.field {
+  width: 400px;
+}
+
+.container {
+  margin: 0px auto;
+}
