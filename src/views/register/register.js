@@ -32,6 +32,8 @@ async function handleSubmit(e) {
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
 
+  console.log(isUser, fullName, email, password);
+
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);
@@ -52,7 +54,7 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = { isUser, fullName, email, password };
+    const data = JSON.stringify({ isUser, fullName, email, password });
     let result;
 
     if (isUser) {
@@ -64,8 +66,16 @@ async function handleSubmit(e) {
         body: data,
       });
     } else {
-      result = await Api.post('/admin/register', data);
+      result = await fetch('/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data,
+      });
     }
+
+    console.log(result);
 
     alert(`정상적으로 회원가입되었습니다.`);
 
