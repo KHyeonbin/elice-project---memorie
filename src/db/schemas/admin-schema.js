@@ -2,11 +2,7 @@ import { Schema } from 'mongoose';
 
 const AdminSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: true,
-    },
-    fullName: {
+    name: {
       type: String,
       required: true,
     },
@@ -14,11 +10,6 @@ const AdminSchema = new Schema(
       type: String,
       required: true,
     },
-    phoneNumber: {
-      type: String,
-      required: false,
-    },
-
     role: {
       type: String,
       required: false,
