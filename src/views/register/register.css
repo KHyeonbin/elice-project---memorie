@@ -32,6 +32,11 @@
   margin-top: 10px;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: black;
+}
+
 .register-user-form-container {
   display: flex;
   align-items: center;
@@ -70,4 +75,17 @@
 
 #sample6_postcode {
   margin-bottom: 5px !important;
+}
+
+/* footer.css */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-menu {
+  width: 90%;
+}
+.ul {
+  list-style: none;
+  padding-left: 0;
 }
