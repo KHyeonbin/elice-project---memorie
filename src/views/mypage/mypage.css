@@ -26,7 +26,10 @@
 .header-link {
   display: block;
 }
-
+.logo-link {
+  text-decoration: none;
+  color: black;
+}
 /* mypage css */
 .mypage-container {
   display: flex;
@@ -93,4 +96,17 @@ td {
   vertical-align: top;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+/* footer.css */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-menu {
+  width: 90%;
+}
+.ul {
+  list-style: none;
+  padding-left: 0;
 }
