@@ -25,6 +25,12 @@ adminRouter.post('/login', async (req, res, next) => {
 
     const { isUser, email, password } = req.body;
 
+    // DB 데이터를 가져와 관리자가 맞는 지 검증
+    const member = await memberService.getMemberByEmail(email);
+    if (member.isUser) {
+      throw new Error('관리자만 관리자로 로그인이 가능합니다.');
+    }
+
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
     const adminToken = await memberService.getMemberToken({ isUser, email, password });
 

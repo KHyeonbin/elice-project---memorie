@@ -61,6 +61,12 @@ class MemberService {
 
     return { token };
   }
+
+  // 단일 member 데이터 조회
+  async getMemberByEmail(memberEmail) {
+    const member = await this.memberModel.findByEmail(memberEmail);
+    return member;
+  }
 }
 
 const memberService = new MemberService(memberModel);
