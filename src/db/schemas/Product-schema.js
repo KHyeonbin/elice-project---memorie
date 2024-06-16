@@ -25,7 +25,7 @@ const ProductSchema = new Schema(
     },
     quantity: {
       type: Number,
-      required: true,
+      required: false,
       min: [0, '0보다 작은 값은 설정이 불가합니다.'],
     },
     price: {

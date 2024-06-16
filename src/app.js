@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import { viewsRouter, userRouter } from './routers';
+import { viewsRouter, userRouter, productRouter } from './routers';
 import { errorHandler } from './middlewares';
 import { adminRouter } from './routers/admin-router';
 
@@ -20,6 +20,9 @@ app.use(viewsRouter);
 
 // users 라우팅
 app.use('/users', userRouter);
+
+//products 라우팅
+app.use('/products', productRouter);
 
 // admin 라우팅
 app.use('/admin', adminRouter);
