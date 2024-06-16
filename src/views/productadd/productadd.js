@@ -47,8 +47,8 @@ async function handleSubmit(e) {
 
     alert(`정상적으로 등록되었습니다.`);
 
-    // 홈 이동 (-> 마이페이지로 가는게 나을듯)
-    window.location.href = '/users/mypage';
+    // 홈 이동
+    window.location.href = '/productlist';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
