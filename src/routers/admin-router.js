@@ -48,7 +48,11 @@ adminRouter.post('/register', async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const { isUser, fullName, email, password } = req.body;
+    const { isUser, fullName, email, password, adminSecretKey } = req.body;
+
+    if (adminSecretKey !== process.env.ADMIN_SECRET_KEY) {
+      throw new Error('관리자 접근키가 틀렸습니다. 내부 관리자에게 문의하세요.');
+    }
 
     // 위 데이터를 유저 db에 추가하기
     const newMember = await memberService.addMember({
