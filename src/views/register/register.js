@@ -1,4 +1,3 @@
-import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
@@ -55,10 +54,9 @@ async function handleSubmit(e) {
   // 회원가입 api 요청
   try {
     const data = JSON.stringify({ isUser, fullName, email, password });
-    let result;
 
     if (isUser) {
-      result = await fetch('/users/register', {
+      await fetch('/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +64,7 @@ async function handleSubmit(e) {
         body: data,
       });
     } else {
-      result = await fetch('/admin/register', {
+      await fetch('/admin/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,8 +72,6 @@ async function handleSubmit(e) {
         body: data,
       });
     }
-
-    console.log(result);
 
     alert(`정상적으로 회원가입되었습니다.`);
 
