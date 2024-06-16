@@ -8,6 +8,17 @@ const passwordInput = document.querySelector('#passwordInput');
 const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
 const submitButton = document.querySelector('#submitButton');
 
+const toggleSwitch = document.getElementById('toggleSwitch');
+const loginType = document.getElementById('loginType');
+
+toggleSwitch.addEventListener('change', function () {
+  if (this.checked) {
+    loginType.textContent = '일반 회원가입';
+  } else {
+    loginType.textContent = '관리자 회원가입';
+  }
+});
+
 addAllElements();
 addAllEvents();
 
