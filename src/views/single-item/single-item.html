@@ -11,64 +11,9 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="single-item.css" />
-    <style>
-      .container {
-        border: 2px solid #d4d4d4;
-        width: 300px;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-      }
-      .product-info img {
-        width: 100px;
-        height: 100px;
-        background-color: #f0f0f0;
-        display: block;
-        margin: 0 auto;
-      }
-      .product-info {
-        text-align: center;
-      }
-      .product-info h2 {
-        font-size: 18px;
-      }
-      .product-info p {
-        font-size: 18px;
-      }
-      .price {
-        color: red;
-        font-size: 18px;
-      }
-      .quantity {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px 0;
-      }
-      .quantity input {
-        width: 40px;
-        text-align: center;
-      }
-      .description {
-        border: 1px solid #ccc;
-        padding: 10px;
-        height: 100px;
-        text-align: center;
-      }
-      .buttons {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 10px;
-      }
-      .buttons button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-      }
-    </style>
   </head>
   <body>
+    <!--헤더 부분-->
     <header class="header">
       <h1 class="header-logo">High Five</h1>
       <div class="header-links">
@@ -144,21 +89,26 @@
         </div>
       </div>
     </nav>
+
+    <!--프로덕트 div 칸-->
     <div class="container">
-      <div class="product-info">
-        <img src="img-placeholder.png" alt="Product Image" />
-        <h2>청바지</h2>
-        <p>"이번 여름은 시원하게"</p>
-        <p>가격: <span class="price" id="total-price">13,000원</span></p>
+      <img src="img-placeholder.png" alt="Product Image" class="resize" />
+
+      <div class="product-texts">
+        <h1 style="font-weight: bold;">민트 향수</h1>
+        <h3>상세 설명 여름에 시원한 향기로 분위기 전환해보세요</h3>
+        <h2>가격: <span class="price" id="total-price">13,000원</span></h2>
+
+        <div class="quantity">
+          <button class="btn btn-dark" onclick="decreaseQuantity()">-</button>
+          <input type="number" id="quantity" value="3" oninput="updatePrice()" />
+          <button class="btn btn-dark"  onclick="increaseQuantity()">+</button>
       </div>
-      <div class="quantity">
-        <button onclick="decreaseQuantity()">-</button>
-        <input type="number" id="quantity" value="3" oninput="updatePrice()" />
-        <button onclick="increaseQuantity()">+</button>
-      </div>
-      <div class="description">제품설명칸</div>
-      <div class="buttons">
-        <button onclick="addToCart()">장바구니 추가</button>
+      
+      
+          <button class="btn-primary" type="submit" onclick="addToCart()">장바구니 추가</button>
+      
+        </div>
       </div>
     </div>
 
