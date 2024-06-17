@@ -7,9 +7,9 @@ class ProductService {
 
   async addProduct(productInfo) {
     // 객체 destructuring(아직 정리안된코드.. )
-    const { name, category, manufacturer, description, price, imageFile } = productInfo;
+    const { name, category, manufacturer, description, price, imageUrl } = productInfo;
 
-    const newProductInfo = { name, category, manufacturer, description, price, imageFile };
+    const newProductInfo = { name, category, manufacturer, description, price, imageUrl };
 
     // db에 저장
     const createdNewProduct = await this.productModel.create(newProductInfo);
