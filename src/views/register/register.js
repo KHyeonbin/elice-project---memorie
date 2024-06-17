@@ -1,6 +1,8 @@
 import { validateEmail } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
+const adminSecretLabel = document.querySelector('.admin-secret-label');
+const adminSecretInput = document.querySelector('#adminSecretInput');
 const fullNameInput = document.querySelector('#fullNameInput');
 const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
@@ -13,8 +15,12 @@ const loginType = document.getElementById('loginType');
 toggleSwitch.addEventListener('change', function () {
   if (this.checked) {
     loginType.textContent = '일반 회원가입';
+    adminSecretInput.style.display = 'none';
+    adminSecretLabel.style.display = 'none';
   } else {
     loginType.textContent = '관리자 회원가입';
+    adminSecretInput.style.display = 'block';
+    adminSecretLabel.style.display = 'block';
   }
 });
 
@@ -50,26 +56,25 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = JSON.stringify({ isUser, fullName, email, password });
+    const data = { isUser, fullName, email, password };
 
-    if (isUser) {
-      await fetch('/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: data,
-      });
-    } else {
-      await fetch('/admin/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: data,
-      });
+    if (!isUser) {
+      data.adminSecretKey = adminSecretInput.value;
     }
 
+    const endpoint = isUser ? '/users/register' : '/admin/register';
+
+    const result = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (result.status === 400) {
+      throw new Error('관리자 접근키가 틀렸습니다. 내부 관리자에게 문의하세요.');
+    }
     alert(`정상적으로 회원가입되었습니다.`);
 
     // 로그인 페이지 이동
