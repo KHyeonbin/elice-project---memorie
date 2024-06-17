@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
-import { viewsRouter, userRouter, adminRouter } from './routers';
+import { viewsRouter, userRouter, adminRouter, productRouter } from './routers';
+
 import { errorHandler } from './middlewares';
 import session from 'express-session';
 import passport from 'passport';
@@ -46,6 +47,9 @@ app.use(viewsRouter);
 
 // users 라우팅
 app.use('/users', userRouter);
+
+//products 라우팅
+app.use('/products', productRouter);
 
 // admin 라우팅
 app.use('/admin', adminRouter);
