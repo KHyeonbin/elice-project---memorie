@@ -1,29 +1,28 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 
-const toggleSwitch = document.querySelector('#toggleSwitch');
-const loginType = document.querySelector('#loginType');
-
-toggleSwitch.addEventListener('change', function () {
-  if (this.checked) {
-    loginType.textContent = '일반 로그인';
-  } else {
-    loginType.textContent = '관리자 로그인';
-  }
-});
-
 // 요소(element), input 혹은 상수
 const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
 const submitButton = document.querySelector('#submitButton');
 
-submitButton.addEventListener('click', handleSubmit);
+addAllElements();
+addAllEvents();
+
+// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+async function addAllElements() {}
+
+// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllEvents() {
+  submitButton.addEventListener('click', (e) => {
+    handleSubmit(e);
+  });
+}
 
 // 로그인 진행
 async function handleSubmit(e) {
   e.preventDefault();
 
-  const isUser = toggleSwitch.checked; // true => 사용자, false => 관리자
   const email = emailInput.value;
   const password = passwordInput.value;
 
@@ -37,8 +36,9 @@ async function handleSubmit(e) {
 
   // 로그인 api 요청
   try {
-    const data = { isUser, email, password };
-    const result = isUser ? await Api.post('/users/login', data) : await Api.post('/admin/login', data);
+    const data = { email, password };
+
+    const result = await Api.post('/users/login', data);
 
     const token = result.token;
 
@@ -48,7 +48,10 @@ async function handleSubmit(e) {
 
     alert(`정상적으로 로그인되었습니다.`);
 
-    window.location.href = isUser ? '/' : '/admin';
+    // 로그인 성공
+
+    // 기본 페이지로 이동
+    window.location.href = '/';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);

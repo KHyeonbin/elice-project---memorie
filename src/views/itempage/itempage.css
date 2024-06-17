@@ -5,7 +5,7 @@
   align-items: center;
   width: 100%;
   height: 80px;
-  margin-top: 30px;
+
   position: relative;
 }
 
@@ -27,85 +27,59 @@
   display: block;
 }
 
-.title {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.logo-link {
-  text-decoration: none;
-  color: black;
-}
-/* oc css */
-.oc-container {
+/* mypage css */
+.mypage-container {
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 200px;
-  margin-top: 20px;
+  min-height: 400px;
+  margin-top: 50px;
 }
-.oc_list-info {
+.mypage_user-info {
   display: flex;
   flex-direction: column;
 
   width: 600px;
   height: 100%;
 }
-.oc_list-info h2 {
+.mypage_user-info h2 {
   margin: 10px;
   color: rgba(0, 0, 0, 0.7);
 }
-.oc_list-info-container {
-  display: flex;
-  flex-direction: column; /* 수직 정렬 */
-  justify-content: space-between; /* 자식 요소들 간에 공간을 균등하게 배분 */
+.mypage_user-info-container {
   width: 100%;
   height: 390px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  padding: 15px;
-}
-.total {
-  text-align: center;
-  margin-top: auto;
-}
-.oc_list-info-container--down {
-  width: 100%;
-  height: 200px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-.oc_list-info-container--bottom {
+  padding: 35px;
+
   display: flex;
+  justify-content: space-between;
+}
+.mypage_user-info-container--left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.mypage_user-info-container--right {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 20px 0 20px 0;
 }
-.order-info {
-  margin: 15px;
-}
-
-a {
-  text-decoration: none;
-  text-align: center;
-  border-radius: 20px;
-  color: white;
-}
-
-.oc-btn {
+.mypage-btn {
   min-width: 150px;
-  height: 50px;
-  align-content: center;
   background-color: rgb(71, 16, 255);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
-.oc-btn:hover {
+.mypage-btn:hover {
   background-color: rgb(125, 80, 250);
   border-color: white;
 }
-.oc-btn--cancel {
+.mypage-btn--cancel {
   min-width: 100px;
 }
 table {
@@ -115,21 +89,8 @@ table {
 th,
 td {
   padding: 8px;
-  text-align: center;
+  text-align: left;
   vertical-align: top;
   word-wrap: break-word;
   word-break: break-all;
-}
-
-/* footer.css */
-.footer {
-  display: flex;
-  justify-content: center;
-}
-.footer-menu {
-  width: 90%;
-}
-.ul {
-  list-style: none;
-  padding-left: 0;
 }

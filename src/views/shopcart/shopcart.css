@@ -27,11 +27,6 @@
   display: block;
 }
 
-.logo-link {
-  text-decoration: none;
-  color: black;
-}
-
 /* mypage css */
 .mypage-container {
   display: flex;
@@ -154,17 +149,4 @@ td {
   border-radius: 20px;
   margin-top: 50px;
   padding: 20px;
-}
-
-/* footer.css */
-.footer {
-  display: flex;
-  justify-content: center;
-}
-.footer-menu {
-  width: 90%;
-}
-.ul {
-  list-style: none;
-  padding-left: 0;
 }
