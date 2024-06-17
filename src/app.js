@@ -1,7 +1,6 @@
 import cors from 'cors';
 import express from 'express';
 import { viewsRouter, userRouter, adminRouter, productRouter } from './routers';
-
 import { errorHandler } from './middlewares';
 import session from 'express-session';
 import passport from 'passport';
@@ -29,19 +28,21 @@ app.use(
 );
 app.use(passport.session());
 
+// 미완성
 passport.use(
   new LocalStrategy(async (email, password, cb) => {
     // member 라는 컬렉션에서 email이 일치하는 것 찾기
     if (!result) {
-      return cb(null, false, { message: '아이디 DB에 없음' });
+      return cb(null, false, { message: '이메일이 틀렸습니다.' });
     }
-    if (result.password == 입력한비번) {
+    if (result.password == password) {
       return cb(null, result);
     } else {
-      return cb(null, false, { message: '비번불일치' });
+      return cb(null, false, { message: '비밀번호가 틀렸습니다.' });
     }
   }),
 );
+
 // views 라우팅
 app.use(viewsRouter);
 
