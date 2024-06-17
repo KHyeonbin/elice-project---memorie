@@ -8,6 +8,7 @@
     "start": "nodemon index.js --exec babel-node"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.598.0",
     "@sindresorhus/is": "^4.6.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -16,6 +17,8 @@
     "express-session": "^1.18.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   },

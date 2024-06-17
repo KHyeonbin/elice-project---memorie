@@ -62,7 +62,14 @@
             <div class="field">
               <label class="label" for="nameInput">제품 이름</label>
               <div class="control">
-                <input class="input" id="nameInput" type="text" placeholder="chanel N'5" autocomplete="on" />
+                <input
+                  name="name"
+                  class="input"
+                  id="nameInput"
+                  type="text"
+                  placeholder="chanel N'5"
+                  autocomplete="on"
+                />
               </div>
             </div>
 
@@ -70,7 +77,7 @@
               <label class="label" for="categorySelectBox">카테고리</label>
               <div class="control">
                 <div class="select is-fullwidth">
-                  <select id="categorySelectBox">
+                  <select name="category" id="categorySelectBox">
                     <option value="">카테고리를 선택해 주세요.</option>
                     <option value="63509d6fef340d0fb686604e" class="notification is-link is-light">샤넬향수</option>
                     <option value="6350a6e5d6120b67050df0dd" class="notification is-link is-light">입생향수</option>
@@ -90,7 +97,14 @@
             <div class="field">
               <label class="label" for="manufacturerInput">제조사</label>
               <div class="control">
-                <input class="input" id="manufacturerInput" type="text" placeholder="디올공장" autocomplete="on" />
+                <input
+                  name="manufacturer"
+                  class="input"
+                  id="manufacturerInput"
+                  type="text"
+                  placeholder="디올공장"
+                  autocomplete="on"
+                />
               </div>
             </div>
 
@@ -98,6 +112,7 @@
               <label class="label" for="descriptionInput">제품 설명</label>
               <div class="control">
                 <textarea
+                  name="description"
                   class="textarea"
                   id="descriptionInput"
                   rows="3"
@@ -111,7 +126,7 @@
               <label class="label" for="imageInput">제품 사진</label>
               <div class="file has-name is-fullwidth">
                 <label class="file-label">
-                  <input class="file-input" id="imageInput" type="file" name="image-file" accept=".png, .jpeg, .jpg" />
+                  <input name="image-file" class="file-input" id="imageInput" type="file" accept=".png, .jpeg, .jpg" />
                   <span class="file-cta">
                     <span class="file-icon">
                       <i class="fas fa-upload"></i>
@@ -127,7 +142,14 @@
               <label class="label" for="priceInput">가격</label>
               <div class="field">
                 <div class="control has-icons-right">
-                  <input class="input" id="priceInput" type="number" placeholder="10000" autocomplete="on" />
+                  <input
+                    name="price"
+                    class="input"
+                    id="priceInput"
+                    type="number"
+                    placeholder="10000"
+                    autocomplete="on"
+                  />
                   <span class="icon is-small is-right"> 원 </span>
                 </div>
               </div>

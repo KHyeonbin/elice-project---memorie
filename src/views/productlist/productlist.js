@@ -33,7 +33,7 @@ function createProductCard(product) {
   });
 
   const img = document.createElement('img');
-  img.src = product.imgurl;
+  img.src = product.imageUrl;
   img.className = 'card-img-top';
   img.alt = product.name;
 
