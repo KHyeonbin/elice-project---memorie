@@ -1,0 +1,38 @@
+.table {
+  text-align: center;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 80px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+.vh-100 {
+  height: 100vh;
+}
+
+.view-more {
+  width: 90px;
+}
+
+.delete {
+  width: 90px;
+}
+
+/* footer.css */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-menu {
+  width: 90%;
+}
+.ul {
+  list-style: none;
+  padding-left: 0;
+}

@@ -1,4 +1,5 @@
 import * as Api from '/api.js';
+import { randomId } from '/useful-functions.js';
 
 const form = document.getElementById('registerProductForm');
 // 요소(element), input 혹은 상수 (HTML의 폼 입력요소 변수에 할당)
