@@ -1,4 +1,5 @@
 import * as Api from '/api.js';
+import { randomId } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수 (HTML의 폼 입력요소 변수에 할당)
 const nameInput = document.querySelector('#nameInput');
@@ -30,6 +31,7 @@ async function handleSubmit(e) {
   const imageFile = imageInput.files[0];
   const price = priceInput.value;
   const manufacturer = manufacturerInput.value;
+  const id = randomId();
 
   // 잘 입력했는지 확인
   const isNameValid = name.length >= 4;
@@ -41,7 +43,7 @@ async function handleSubmit(e) {
 
   // 상품등록 api 요청
   try {
-    const data = { name, category, price, description, imageFile, manufacturer };
+    const data = { _id: id, name, category, price, description, imageFile, manufacturer };
 
     await Api.post('/products/product', data);
 

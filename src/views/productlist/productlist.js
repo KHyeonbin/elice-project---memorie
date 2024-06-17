@@ -28,6 +28,9 @@ function createProductCard(product) {
 
   const cardDiv = document.createElement('div');
   cardDiv.className = 'card';
+  cardDiv.addEventListener('click', () => {
+    window.location.href = `/product/detail?id=${product._id}`;
+  });
 
   const img = document.createElement('img');
   img.src = product.imgurl;
