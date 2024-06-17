@@ -1,8 +1,10 @@
 import cors from 'cors';
 import express from 'express';
-import { viewsRouter, userRouter } from './routers';
+import { viewsRouter, userRouter, adminRouter } from './routers';
 import { errorHandler } from './middlewares';
-import { adminRouter } from './routers/admin-router';
+import session from 'express-session';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
 
 const app = express();
 
@@ -15,6 +17,30 @@ app.use(express.json());
 // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(express.urlencoded({ extended: false }));
 
+// passport 라이브러리 셋팅
+app.use(passport.initialize());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(passport.session());
+
+passport.use(
+  new LocalStrategy(async (email, password, cb) => {
+    // member 라는 컬렉션에서 email이 일치하는 것 찾기
+    if (!result) {
+      return cb(null, false, { message: '아이디 DB에 없음' });
+    }
+    if (result.password == 입력한비번) {
+      return cb(null, result);
+    } else {
+      return cb(null, false, { message: '비번불일치' });
+    }
+  }),
+);
 // views 라우팅
 app.use(viewsRouter);
 
