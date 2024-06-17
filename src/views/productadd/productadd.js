@@ -1,5 +1,6 @@
 import * as Api from '/api.js';
 
+const form = document.getElementById('registerProductForm');
 // 요소(element), input 혹은 상수 (HTML의 폼 입력요소 변수에 할당)
 const nameInput = document.querySelector('#nameInput');
 const categorySelectBox = document.querySelector('#categorySelectBox');
@@ -9,45 +10,51 @@ const priceInput = document.querySelector('#priceInput');
 const manufacturerInput = document.querySelector('#manufacturerInput');
 const submitButton = document.querySelector('#submitButton');
 
-addAllElements();
-addAllEvents();
-
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-async function addAllElements() {}
-
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-  submitButton.addEventListener('click', handleSubmit);
-}
+submitButton.addEventListener('click', handleSubmit);
 
 // 상품등록 진행
 async function handleSubmit(e) {
   e.preventDefault();
 
-  const name = nameInput.value;
-  const category = categorySelectBox.value;
-  const description = descriptionInput.value;
-  const imageFile = imageInput.files[0];
-  const price = priceInput.value;
-  const manufacturer = manufacturerInput.value;
+  const formData = new FormData(form);
+  const name = formData.get('name'); // 제품 이름
+  const category = formData.get('category'); // 카테고리
+  const manufacturer = formData.get('manufacturer'); // 제조사
+  const description = formData.get('description'); // 제품 설명
+  const imageFile = formData.get('image-file'); // 제품 사진
+  const price = formData.get('price'); // 가격
 
-  // 잘 입력했는지 확인
-  const isNameValid = name.length >= 4;
-  const isManufacturerValid = manufacturer.length >= 2;
+  // 입력값 검증
+  if (!name || name.length < 4) {
+    return alert('제품 이름은 4글자 이상이어야 합니다.');
+  }
 
-  if (!isNameValid || !isManufacturerValid) {
-    return alert('이름은 4글자 이상, 제조사는 2글자 이상이어야 합니다.');
+  if (!manufacturer || manufacturer.length < 2) {
+    return alert('제조사는 2글자 이상이어야 합니다.');
+  }
+
+  if (!category) {
+    return alert('카테고리를 선택해 주세요.');
+  }
+
+  if (!price || isNaN(price) || price <= 0) {
+    return alert('가격을 올바르게 입력해 주세요.');
+  }
+
+  if (!imageFile || !['image/png', 'image/jpeg', 'image/jpg'].includes(imageFile.type)) {
+    return alert('유효한 이미지 파일을 선택해 주세요.');
   }
 
   // 상품등록 api 요청
   try {
-    const data = { name, category, price, description, imageFile, manufacturer };
-
-    await Api.post('/products/product', data);
+    await fetch('/products/product', {
+      method: 'POST',
+      body: formData,
+    });
 
     alert(`정상적으로 등록되었습니다.`);
 
-    // 홈 이동
+    // 상품리스트로 이동
     window.location.href = '/productlist';
   } catch (err) {
     console.error(err.stack);
