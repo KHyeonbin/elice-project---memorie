@@ -1,8 +1,8 @@
 /* Default CSS */
 * {
-  max-width: 600px;
   box-sizing: border-box;
   align-content: center;
+  margin: 0 auto;
 }
 img {
   vertical-align: middle;
@@ -12,19 +12,63 @@ a {
   text-decoration: none;
   text-align: center;
 }
-
-.header-logo {
-  text-align: center;
+/* header css */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin-top: 30px;
+  position: relative;
 }
 
 .header-links {
-  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  margin-top: 8px;
+  margin-right: 20px;
+
+  gap: 15px;
 }
 
-.field {
-  width: 400px;
+.title {
+  text-align: center;
+  margin-top: 10px;
 }
 
-.container {
-  margin: 0px auto;
+.logo-link {
+  text-decoration: none;
+  color: black;
+}
+
+.register-product-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.register-product-form-box {
+  width: 30rem;
+}
+
+.register-product-form-box .title {
+  text-align: center;
+}
+
+.register-product-form-box .button {
+  font-weight: bold;
+}
+
+.register-product-form-box .input:focus,
+.register-product-form-box .textarea:focus,
+.register-product-form-box select:focus {
+  border-color: #0b079b;
+  box-shadow: 0 0 0 0.125em rgba(59, 91, 156, 0.25);
 }
