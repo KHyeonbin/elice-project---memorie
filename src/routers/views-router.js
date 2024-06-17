@@ -10,6 +10,10 @@ viewsRouter.use('/', serveStatic('home'));
 viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
 viewsRouter.use('/users/mypage', serveStatic('mypage')); // mypage.html과 연동
+viewsRouter.use('/admin', serveStatic('admin'));
+viewsRouter.use('/productadd', serveStatic('productadd'));
+viewsRouter.use('/product-manage', serveStatic('product-manage'));
+viewsRouter.use('/productlist', serveStatic('productlist'));
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
 viewsRouter.use('/', serveStatic(''));

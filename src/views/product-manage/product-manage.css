@@ -8,3 +8,8 @@
   background-color: #8461ff;
   color: white;
 }
+
+a {
+  text-decoration: none;
+  text-align: center;
+}

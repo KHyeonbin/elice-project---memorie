@@ -3,6 +3,7 @@ import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
 import { userService } from '../services';
+import { memberService } from '../services/member-service';
 
 const userRouter = Router();
 
@@ -16,12 +17,11 @@ userRouter.post('/register', async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const fullName = req.body.fullName;
-    const email = req.body.email;
-    const password = req.body.password;
+    const { isUser, fullName, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
-    const newUser = await userService.addUser({
+    const newUser = await memberService.addMember({
+      isUser,
       fullName,
       email,
       password,
@@ -36,20 +36,21 @@ userRouter.post('/register', async (req, res, next) => {
 });
 
 // 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
-userRouter.post('/login', async function (req, res, next) {
-  console.log(req);
+userRouter.post('/login', async (req, res, next) => {
   try {
-    // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
       throw new Error('headers의 Content-Type을 application/json으로 설정해주세요');
     }
+    const { isUser, email, password } = req.body;
 
-    // req (request) 에서 데이터 가져오기
-    const email = req.body.email;
-    const password = req.body.password;
+    // DB 데이터를 가져와 사용자가 맞는 지 검증
+    const member = await memberService.getMemberByEmail(email);
+    if (!member.isUser) {
+      throw new Error('일반 유저만 일반 로그인이 가능합니다.');
+    }
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
-    const userToken = await userService.getUserToken({ email, password });
+    const userToken = await memberService.getMemberToken({ isUser, email, password });
 
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
     res.status(200).json(userToken);
@@ -117,6 +118,16 @@ userRouter.patch('/users/:userId', loginRequired, async function (req, res, next
 
     // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
     res.status(200).json(updatedUserInfo);
+  } catch (error) {
+    next(error);
+  }
+});
+
+userRouter.get('/mypage', loginRequired, async (req, res, next) => {
+  try {
+    const userInfo = await userService.getUserById(userId);
+
+    res.status(200).json(userInfo);
   } catch (error) {
     next(error);
   }
