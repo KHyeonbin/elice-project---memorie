@@ -32,6 +32,10 @@ button {
   display: block;
 }
 
+.dropdown-menu {
+  display: none;
+  position: absolute;
+}
 .nav-item:hover .dropdown-menu {
   display: block;
 }
