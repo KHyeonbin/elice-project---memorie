@@ -4,6 +4,7 @@ import { getUrlParams, addCommas, checkUrlParams } from '/useful-functions.js';
 // 요소(element), input 혹은 상수
 const manufacturerTag = document.querySelector('#manufacturerTag');
 const nameTag = document.querySelector('#nameTag');
+const imageTag = document.querySelector('#imageTag');
 const descriptionTag = document.querySelector('#descriptionTag');
 const addToCartButton = document.querySelector('#addToCartButton');
 const purchaseButton = document.querySelector('#purchaseButton');
@@ -25,8 +26,9 @@ async function insertProductData() {
   const product = await Api.get(`/products/product/${id}`);
 
   // 객체 destructuring
-  const { name, description, manufacturer, price } = product;
+  const { imageUrl, name, description, manufacturer, price } = product;
 
+  imageTag.src = imageUrl;
   nameTag.innerText = name;
   descriptionTag.innerText = description;
   manufacturerTag.innerText = manufacturer;
