@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import { viewsRouter, userRouter, adminRouter, productRouter } from './routers';
+import { viewsRouter, userRouter, adminRouter, productRouter, searchRouter } from './routers';
 import { errorHandler } from './middlewares';
 import session from 'express-session';
 import passport from 'passport';
@@ -45,6 +45,15 @@ passport.use(
 
 // views 라우팅
 app.use(viewsRouter);
+
+// search 라우팅
+// app.use('/search', searchRouter);
+
+// 검색 결과 불러오는 api
+app.get('/search', async (req, res, next) => {
+  console.log(req.query.val);
+  // 컬렉션에 접근해서 DB 정보 find 로 가져와
+});
 
 // users 라우팅
 app.use('/users', userRouter);

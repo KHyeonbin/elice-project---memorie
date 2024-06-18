@@ -54,14 +54,6 @@
   margin: 0 auto;
 }
 
-.pagination {
-  justify-content: center;
-  margin-top: 50px;
-}
-.page-link {
-  font-size: 20px;
-}
-
 .dropdown-menu {
   display: none;
   position: absolute;

@@ -64,6 +64,10 @@ import * as Api from '/api.js';
 // 요소(element) 할당
 const productsContainer = document.querySelector('#productsContainer');
 
+// 검색버튼, 검색창 element 가져오기
+const searchButton = document.querySelector('.search-button');
+const searchInput = document.querySelector('.search-input');
+
 // 페이지 로드 시 전체 상품 조회 및 표시
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -74,6 +78,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     alert('문제가 발생하였습니다. 다시 시도해 주세요.');
   }
 });
+
+// 검색어를 입력하고 검색버튼 누르면 부분 상품 조회 및 표시
+searchButton.addEventListener('click', handleSearchSubmit);
+
+async function handleSearchSubmit(e) {
+  e.preventDefault();
+
+  const searchStr = searchInput.value; // 검색어
+  // 검색어는 최소 2글자 이상
+  if (searchStr.length <= 1) {
+    return alert('검색어는 최소 2글자 이상이어야 합니다.');
+  }
+
+  try {
+    location.href = `/search?val=${searchStr}`;
+  } catch (err) {
+    console.log(err.stack);
+    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
+  }
+}
 
 // 상품 목록을 화면에 표시하는 함수
 function displayProducts(products) {
