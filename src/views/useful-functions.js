@@ -8,22 +8,53 @@ export const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
     .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
 };
 
 // 숫자에 쉼표를 추가함. (10000 -> 10,000)
 export const addCommas = (n) => {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 // 13,000원, 2개 등의 문자열에서 쉼표, 글자 등 제외 후 숫자만 뺴냄
 // 예시: 13,000원 -> 13000, 20,000개 -> 20000
 export const convertToNumber = (string) => {
-  return parseInt(string.replace(/(,|개|원)/g, ""));
+  return parseInt(string.replace(/(,|개|원)/g, ''));
 };
 
 // ms만큼 기다리게 함.
 export const wait = (ms) => {
   return new Promise((r) => setTimeout(r, ms));
+};
+
+// 주소에 특정 params가 없다면 잘못된 접근으로 하고 싶은 경우 사용.
+export const checkUrlParams = (key) => {
+  const { [key]: params } = getUrlParams();
+
+  if (!params) {
+    window.location.replace('/page-not-found');
+  }
+};
+
+// 해당 주소로 이동하는 콜백함수를 반환함.
+// 이벤트 핸들 함수로 쓰면 유용함
+export const navigate = (pathname) => {
+  return function () {
+    window.location.href = pathname;
+  };
+};
+
+// 주소창의 url로부터 params를 얻어 객체로 만듦
+export const getUrlParams = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const result = {};
+
+  for (const [key, value] of urlParams) {
+    result[key] = value;
+  }
+
+  return result;
 };

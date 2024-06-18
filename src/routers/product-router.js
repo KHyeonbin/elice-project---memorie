@@ -73,3 +73,17 @@ productRouter.get('/productlist', async (req, res, next) => {
 });
 
 export { productRouter };
+
+//특정상품조회
+productRouter.get('/product/:productId', async (req, res, next) => {
+  try {
+    const productId = req.params.productId;
+    const productInfo = await productService.getProductById(productId);
+
+    res.status(200).json(productInfo);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//상품 내용 수정
