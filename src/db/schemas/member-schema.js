@@ -8,6 +8,11 @@ const MemberSchema = new Schema(
       unique: true,
       sparse: true,
     },
+    naverId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
     email: {
       type: String,
       unique: true,
@@ -42,6 +47,10 @@ const MemberSchema = new Schema(
     isUser: {
       type: Boolean,
       default: true,
+    },
+    provider: {
+      type: String,
+      required: false,
     },
   },
   {

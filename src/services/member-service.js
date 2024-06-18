@@ -54,6 +54,20 @@ class MemberService {
     const createdNewMember = await this.memberModel.createByKakao(newMemberInfo);
     return createdNewMember;
   }
+
+  // 네이버 사용자 정보 조회
+  async getMemberByNaverId(naverId) {
+    const member = await this.memberModel.findByNaverId(naverId);
+    return member;
+  }
+
+  // 사용자 정보 추가 (네이버)
+  async addMemberByNaver(memberInfo) {
+    const { naverId, email, name, provider } = memberInfo;
+    const newMemberInfo = { naverId, email, name, provider };
+    const createdNewMember = await this.memberModel.createByNaver(newMemberInfo);
+    return createdNewMember;
+  }
 }
 
 const memberService = new MemberService(memberModel);

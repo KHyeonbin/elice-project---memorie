@@ -37,14 +37,26 @@ export class MemberModel {
     return updatedUser;
   }
 
-  // 카카오 사용자 정보 조회
+  /** 카카오 사용자 정보 조회 */
   async findByKakaoId(kakaoId) {
     const member = await Member.findOne({ kakaoId });
     return member;
   }
 
-  // 사용자 정보 추가 (카카오)
+  /** 사용자 정보 추가 (카카오) */
   async createByKakao(memberInfo) {
+    const createdNewMember = await Member.create(memberInfo);
+    return createdNewMember;
+  }
+
+  /** 네이버 사용자 정보 조회 */
+  async findByNaverId(naverId) {
+    const member = await Member.findOne({ naverId });
+    return member;
+  }
+
+  /** 사용자 정보 추가 (네이버) */
+  async createByNaver(memberInfo) {
     const createdNewMember = await Member.create(memberInfo);
     return createdNewMember;
   }
