@@ -85,3 +85,5 @@ productRouter.get('/product/:productId', async (req, res, next) => {
     next(error);
   }
 });
+
+//상품 내용 수정
