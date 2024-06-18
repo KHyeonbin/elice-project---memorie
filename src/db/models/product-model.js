@@ -13,6 +13,11 @@ export class ProductModel {
     const products = await Product.find({});
     return products;
   }
+  async findById(productId) {
+    const product = await Product.findOne({ _id: productId });
+    return product;
+  }
+
   //수정하는 모델
   async update({ productId, update }) {
     const filter = { _id: productId };
@@ -20,6 +25,11 @@ export class ProductModel {
 
     const updatedProduct = await Product.findOneAndUpdate(filter, update, option);
     return updatedProduct;
+  }
+  //특정 카테고리만 찾아오기
+  async findByCategory(categoryId) {
+    const products = await Product.find({ category: categoryId });
+    return products;
   }
 }
 
