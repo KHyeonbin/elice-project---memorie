@@ -13,6 +13,7 @@ viewsRouter.use('/users/mypage', serveStatic('mypage')); // mypage.html과 연�
 viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/productadd', serveStatic('productadd'));
 viewsRouter.use('/productlist', serveStatic('productlist'));
+viewsRouter.use('/product-update', serveStatic('product-update'));
 viewsRouter.use('/product-single', serveStatic('product-single'));
 viewsRouter.use('/single-item', serveStatic('single-item'));
 viewsRouter.use('/about', serveStatic('about'));
