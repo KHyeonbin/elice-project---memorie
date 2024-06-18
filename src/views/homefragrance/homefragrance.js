@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
           `;
         productsContainer.appendChild(productDiv);
+        productDiv.addEventListener('click', () => {
+          window.location.href = `/product-single?id=${product._id}`;
+        });
       });
     })
     .catch((error) => console.error('Error fetching products:', error));
