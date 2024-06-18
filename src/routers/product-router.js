@@ -72,6 +72,52 @@ productRouter.get('/productlist', async (req, res, next) => {
   }
 });
 
+//홈 옵션에 해당하는거 가져오는 api
+productRouter.get('/homefragrance', async (req, res, next) => {
+  try {
+    const categoryId = '63db888be265dbf211224f0d';
+    const products = await productService.getProductsByCategory(categoryId);
+
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+//handcare 옵션 해당하는 제품 가져오는 api
+productRouter.get('/handcare', async (req, res, next) => {
+  try {
+    const categoryId = '6350f7a1a6b9ed0063334298';
+    const products = await productService.getProductsByCategory(categoryId);
+
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//bodycare 옵션 해당하는 제품 가져오는 api
+productRouter.get('/bodycare', async (req, res, next) => {
+  try {
+    const categoryId = '63d9bf9e7c2b56552fca0aa6';
+    const products = await productService.getProductsByCategory(categoryId);
+
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//perfume 옵션 해당하는 제품 가져오는 api
+productRouter.get('/perfume', async (req, res, next) => {
+  try {
+    const categoryId = '6350a6e5d6120b67050df0dd';
+    const products = await productService.getProductsByCategory(categoryId);
+
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
 export { productRouter };
 
 //특정상품조회
