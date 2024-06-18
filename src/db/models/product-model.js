@@ -13,6 +13,13 @@ export class ProductModel {
     const products = await Product.find({});
     return products;
   }
+
+  // 이름에 검색어가 포함된 제품만 찾는 모델
+  async findByName(productKeyword) {
+    const products = await Product.find({ name: new RegExp(productKeyword, 'i') });
+    return products;
+  }
+
   async findById(productId) {
     const product = await Product.findOne({ _id: productId });
     return product;
