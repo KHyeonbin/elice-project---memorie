@@ -6,7 +6,9 @@
     <title>관리자 페이지</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="product-manage.css" />
+    <script type="module" src="product-manage.js"></script>
   </head>
+
   <body>
     <div class="container mt-5">
       <h2 class="mb-4">제품관리 페이지</h2>
@@ -17,7 +19,7 @@
         <thead>
           <tr>
             <th scope="col"><input type="checkbox" onclick="toggle(this)" /></th>
-            <th scope="col">이미지</th>
+            <th scope="col">이미지사진</th>
             <th scope="col">제품명</th>
             <th scope="col">가격</th>
             <th scope="col">상세설명</th>
@@ -29,66 +31,5 @@
         </tbody>
       </table>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-      function toggle(source) {
-        const checkboxes = document.getElementsByName('select');
-        for (let i = 0; i < checkboxes.length; i++) {
-          checkboxes[i].checked = source.checked;
-        }
-      }
-
-      async function fetchProducts() {
-        try {
-          const response = await fetch('/api/products');
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const products = await response.json();
-          renderProducts(products);
-        } catch (error) {
-          console.error('Error fetching products:', error);
-        }
-      }
-
-      function renderProducts(products) {
-        const productTableBody = document.getElementById('productTableBody');
-        productTableBody.innerHTML = ''; // Clear existing content
-
-        products.forEach((product) => {
-          const row = document.createElement('tr');
-
-          row.innerHTML = `
-            <td><input type="checkbox" name="select" /></td>
-            <td><img src="https://via.placeholder.com/50" alt="제품 이미지" /></td>
-            <td>${product.name}</td>
-            <td>₩${product.price.toLocaleString()}</td>
-            <td>
-              <select class="form-control">
-                <option>${product.category}</option>
-                <option>기본</option>
-                <option>머스크</option>
-                <option>플로럴</option>
-                <option>프루티</option>
-                <option>우드</option>
-                <option>시트러스</option>
-              </select>
-            </td>
-            <td>${product.detailDescription}</td>
-            <td>${product.manufacturer}</td>
-          `;
-
-          productTableBody.appendChild(row);
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        fetchProducts();
-      });
-    </script>
   </body>
 </html>
