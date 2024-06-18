@@ -36,6 +36,18 @@ export class MemberModel {
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
   }
+
+  // 카카오 사용자 정보 조회
+  async findByKakaoId(kakaoId) {
+    const member = await Member.findOne({ kakaoId });
+    return member;
+  }
+
+  // 사용자 정보 추가 (카카오)
+  async createByKakao(memberInfo) {
+    const createdNewMember = await Member.create(memberInfo);
+    return createdNewMember;
+  }
 }
 
 const memberModel = new MemberModel();

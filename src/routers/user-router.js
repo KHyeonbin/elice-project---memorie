@@ -1,13 +1,80 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
-// 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
-import { userService } from '../services';
-import { memberService } from '../services/member-service';
+import { memberService } from '../services';
+import session from 'express-session';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
+import bcrypt from 'bcrypt';
+import MongoStore from 'connect-mongo';
+import { authRouter } from './auth-router';
+import '../passport/kakao-strategy'; // passport-kakao 불러오기
 
 const userRouter = Router();
 
-// 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
+// passport 라이브러리 셋팅
+userRouter.use(passport.initialize());
+userRouter.use(
+  session({
+    secret: process.env.SESSION_SECRET, // 세션 id를 암호화
+    resave: false, // 요청 이벤트마다 사용자의 session을 갱신할 지 여부
+    saveUninitialized: false, // 비로그인 시에도 세션 생성해줄 지 여부
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // maxAge: [ms] => 세션 만료 기한 설정
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URL,
+      dbName: 'test',
+    }),
+  }),
+);
+userRouter.use(passport.session());
+
+// auth 라우팅
+userRouter.use('/auth', authRouter);
+
+// 회원가입이 되었는 지 확인하고 세션 발행
+passport.use(
+  new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (email, password, cb) => {
+    try {
+      // 해당 이메일의 사용자 정보가 db에 존재하는지 확인
+      const user = await memberService.getMemberByEmail(email);
+      if (!user) {
+        return cb(null, false, { message: '이메일이 틀렸습니다.' });
+      }
+
+      // 비밀번호 일치 여부 확인
+      const correctPasswordHash = user.password; // db에 저장되어 있는 암호화된 비밀번호
+      const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
+
+      if (isPasswordCorrect) {
+        return cb(null, user);
+      } else {
+        return cb(null, false, { message: '비밀번호가 틀렸습니다.' });
+      }
+    } catch (err) {
+      console.error(err);
+      return cb(err);
+    }
+  }),
+);
+
+passport.serializeUser((user, done) => {
+  const { _id, email, isUser } = user;
+  process.nextTick(() => {
+    done(null, { id: _id, email, isUser });
+  });
+});
+
+passport.deserializeUser(async (user, done) => {
+  // 항상 최신의 DB 기반 member 정보 보장
+  const refreshedUser = await memberService.getMemberById(user.id);
+  delete refreshedUser.password;
+
+  process.nextTick(() => {
+    done(null, refreshedUser);
+  });
+});
+
+// 회원가입 api
 userRouter.post('/register', async (req, res, next) => {
   try {
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
@@ -35,28 +102,17 @@ userRouter.post('/register', async (req, res, next) => {
   }
 });
 
-// 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
+// 로그인 api
 userRouter.post('/login', async (req, res, next) => {
-  try {
-    if (is.emptyObject(req.body)) {
-      throw new Error('headers의 Content-Type을 application/json으로 설정해주세요');
-    }
-    const { isUser, email, password } = req.body;
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return res.status(500).json(err);
+    if (!user) return res.status(401).json({ message: info.message });
 
-    // DB 데이터를 가져와 사용자가 맞는 지 검증
-    const member = await memberService.getMemberByEmail(email);
-    if (!member.isUser) {
-      throw new Error('일반 유저만 일반 로그인이 가능합니다.');
-    }
-
-    // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
-    const userToken = await memberService.getMemberToken({ isUser, email, password });
-
-    // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
-    res.status(200).json(userToken);
-  } catch (error) {
-    next(error);
-  }
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      res.status(200).json(user); // 로그인 성공 시 user 정보 반환
+    });
+  })(req, res, next);
 });
 
 // 전체 유저 목록을 가져옴 (배열 형태임)
