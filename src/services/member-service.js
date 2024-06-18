@@ -1,5 +1,4 @@
 import { memberModel } from '../db';
-
 import bcrypt from 'bcrypt';
 
 class MemberService {
@@ -40,6 +39,20 @@ class MemberService {
   async getMemberById(memberId) {
     const member = await this.memberModel.findById(memberId);
     return member;
+  }
+
+  // 카카오 사용자 정보 조회
+  async getMemberByKakaoId(kakaoId) {
+    const member = await this.memberModel.findByKakaoId(kakaoId);
+    return member;
+  }
+
+  // 사용자 정보 추가 (카카오)
+  async addMemberByKakao(memberInfo) {
+    const { kakaoId, email, name, password } = memberInfo;
+    const newMemberInfo = { kakaoId, email, name, password: password ? await bcrypt.hash(password, 10) : null };
+    const createdNewMember = await this.memberModel.createByKakao(newMemberInfo);
+    return createdNewMember;
   }
 }
 

@@ -7,6 +7,8 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import bcrypt from 'bcrypt';
 import MongoStore from 'connect-mongo';
+import { authRouter } from './auth-router';
+import '../passport/kakao-strategy'; // passport-kakao 불러오기
 
 const userRouter = Router();
 
@@ -25,6 +27,9 @@ userRouter.use(
   }),
 );
 userRouter.use(passport.session());
+
+// auth 라우팅
+userRouter.use('/auth', authRouter);
 
 // 회원가입이 되었는 지 확인하고 세션 발행
 passport.use(
