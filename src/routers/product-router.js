@@ -133,3 +133,44 @@ productRouter.get('/product/:productId', async (req, res, next) => {
 });
 
 //상품 내용 수정
+productRouter.patch('/amend/:productId', upload.single('image-file'), async function (req, res, next) {
+  try {
+    // content-type 을 application/json 로 프론트에서
+    // 설정 안 하고 요청하면, body가 비어 있게 됨.
+    if (is.emptyObject(req.body)) {
+      throw new Error('headers의 Content-Type을 application/json으로 설정해주세요');
+    }
+
+    // params로부터 id를 가져옴
+    const productId = req.params.productId;
+
+    // body data 로부터 업데이트할 사용자 정보를 추출함.
+    const name = req.body.name;
+    const category = req.body.category;
+    const manufacturer = req.body.manufacturer;
+    const description = req.body.description;
+    const imageUrl = req.body.imageUrl;
+    const price = req.body.price;
+
+    const productInfoRequired = { productId };
+
+    // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
+    // 보내주었다면, 업데이트용 객체에 삽입함.
+    const toUpdate = {
+      ...(name && { name }),
+      ...(category && { category }),
+      ...(manufacturer && { manufacturer }),
+      ...(description && { description }),
+      ...(imageUrl && { imageUrl }),
+      ...(price && { price }),
+    };
+
+    // 사용자 정보를 업데이트함.
+    const updatedProductInfo = await productService.setProduct(productInfoRequired, toUpdate);
+
+    // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
+    res.status(200).json(updatedProductInfo);
+  } catch (error) {
+    next(error);
+  }
+});
