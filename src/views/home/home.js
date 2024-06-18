@@ -91,7 +91,7 @@ function createProductCard(product) {
   const cardDiv = document.createElement('div');
   cardDiv.className = 'card';
   cardDiv.addEventListener('click', () => {
-    window.location.href = `/single-item?id=${product._id}`;
+    window.location.href = `/product-single?id=${product._id}`;
   });
 
   const img = document.createElement('img');

@@ -1,3 +1,37 @@
+* {
+  max-width: 1200px;
+  margin: 0px auto;
+  box-sizing: border-box;
+  align-content: center;
+}
+
+img {
+  vertical-align: middle;
+}
+a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+.header-logo {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.table {
+  text-align: center;
+}
+h1 {
+  text-align: center;
+}
+.admin-page {
+  border-bottom: #ddd 1px solid;
+  padding-bottom: 10px;
+}
+.container {
+  margin-top: 30px;
+}
+
 .table-custom tbody tr:nth-of-type(odd) {
   background-color: #3300ff22;
 }
@@ -7,9 +41,4 @@
 .table-custom thead {
   background-color: #8461ff;
   color: white;
-}
-
-a {
-  text-decoration: none;
-  text-align: center;
 }
