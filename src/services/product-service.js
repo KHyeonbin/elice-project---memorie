@@ -33,9 +33,32 @@ class ProductService {
     const products = await this.productModel.findByName(productKeyword);
     return products;
   }
-  
+
   async getProductsByCategory(categoryId) {
     return await productModel.findByCategory(categoryId);
+  }
+  // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
+  async setProduct(productInfoRequired, toUpdate) {
+    // 객체 destructuring
+    const { productId } = productInfoRequired;
+
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    let product = await this.productModel.findById(productId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!product) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    // 이제 드디어 업데이트 시작
+
+    // 업데이트 진행
+    product = await this.productModel.update({
+      productId,
+      update: toUpdate,
+    });
+
+    return product;
   }
 }
 

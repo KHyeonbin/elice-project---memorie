@@ -1,0 +1,141 @@
+/* Default CSS */
+* {
+  box-sizing: border-box;
+  align-content: center;
+  margin: 0 auto;
+}
+
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+}
+/* header css */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.header-links {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  margin-top: 8px;
+  margin-right: 20px;
+
+  gap: 15px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: black;
+}
+
+.register-product-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.register-product-form-box {
+  width: 30rem;
+}
+
+.register-product-form-box .title {
+  text-align: center;
+}
+
+.register-product-form-box .button {
+  font-weight: bold;
+}
+
+.register-product-form-box .input:focus,
+.register-product-form-box .textarea:focus,
+.register-product-form-box select:focus {
+  border-color: #0b079b;
+  box-shadow: 0 0 0 0.125em rgba(59, 91, 156, 0.25);
+}
+
+/* 회원가입 정보 박스 */
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.control {
+  display: flex;
+  justify-content: center;
+}
+
+/* 토글 스위치 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-left: 1rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+}

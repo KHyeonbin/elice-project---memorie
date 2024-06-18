@@ -37,6 +37,15 @@ function createProductRow(product) {
     <td scope="row">${product.manufacturer}</td>
   `;
 
+  // 제품 행 클릭 시 상세 페이지로 이동하는 이벤트 리스너 추가
+  row.addEventListener('click', (event) => {
+    // 체크박스 클릭 시에는 상세 페이지로 이동하지 않음
+    if (event.target.classList.contains('product-checkbox')) {
+      event.stopPropagation();
+      return;
+    }
+    window.location.href = `/product-update?id=${product._id}`;
+  });
   return row;
 }
 
