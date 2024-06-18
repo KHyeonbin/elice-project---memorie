@@ -1,4 +1,3 @@
-import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 
 const toggleSwitch = document.querySelector('#toggleSwitch');
@@ -37,16 +36,36 @@ async function handleSubmit(e) {
 
   // 로그인 api 요청
   try {
-    const data = { isUser, email, password };
-    const result = isUser ? await Api.post('/users/login', data) : await Api.post('/admin/login', data);
+    const data = { email, password };
 
-    const token = result.token;
+    // 사용자 : POST /users/login
+    // 관리자 : POST /admin/login
+    const response = isUser
+      ? await fetch('/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+          credentials: 'same-origin',
+        })
+      : await fetch('/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+          credentials: 'same-origin',
+        });
 
-    // 로그인 성공, 토큰을 세션 스토리지에 저장
-    // 물론 다른 스토리지여도 됨
-    sessionStorage.setItem('token', token);
+    if (!response.ok) {
+      throw new Error('로그인에 실패했습니다. 다시 시도해주세요.');
+    }
 
-    alert(`정상적으로 로그인되었습니다.`);
+    const result = await response.json();
+    if (result) {
+      alert(`정상적으로 로그인되었습니다.`);
+    }
 
     window.location.href = isUser ? '/' : '/admin';
   } catch (err) {
