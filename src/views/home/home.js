@@ -69,7 +69,16 @@ const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 
 // 페이지 로드 시 전체 상품 조회 및 표시
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', handleProductLoad);
+
+// 검색어를 입력하고 검색버튼 누르면 부분 상품 조회 및 표시
+searchButton.addEventListener('click', handleSearchSubmit);
+
+// X를 눌러 검색창을 비우면 다시 전체 상품 표시
+searchInput.addEventListener('input', handleSearchReset);
+
+// 전체 상품 불러오기
+async function handleProductLoad() {
   try {
     const products = await Api.get('/products/productlist');
     displayProducts(products);
@@ -77,10 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Failed to fetch products:', err);
     alert('문제가 발생하였습니다. 다시 시도해 주세요.');
   }
-});
-
-// 검색어를 입력하고 검색버튼 누르면 부분 상품 조회 및 표시
-searchButton.addEventListener('click', handleSearchSubmit);
+}
 
 async function handleSearchSubmit(e) {
   e.preventDefault();
@@ -103,6 +109,15 @@ async function handleSearchSubmit(e) {
   } catch (err) {
     console.log(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
+  }
+}
+
+// 검색창이 비워지면 다시 전체 상품 표시
+function handleSearchReset(e) {
+  e.preventDefault();
+
+  if (e.target.value === '') {
+    handleProductLoad();
   }
 }
 
