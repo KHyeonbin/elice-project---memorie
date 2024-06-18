@@ -13,6 +13,11 @@ export class ProductModel {
     const products = await Product.find({});
     return products;
   }
+  async findById(productId) {
+    const product = await Product.findOne({ _id: productId });
+    return product;
+  }
+
   //수정하는 모델
   async update({ productId, update }) {
     const filter = { _id: productId };
