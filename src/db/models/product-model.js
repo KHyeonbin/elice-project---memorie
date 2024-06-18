@@ -26,6 +26,11 @@ export class ProductModel {
     const updatedProduct = await Product.findOneAndUpdate(filter, update, option);
     return updatedProduct;
   }
+  //특정 카테고리만 찾아오기
+  async findByCategory(categoryId) {
+    const products = await Product.find({ category: categoryId });
+    return products;
+  }
 }
 
 const productModel = new ProductModel();
