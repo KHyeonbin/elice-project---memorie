@@ -47,13 +47,7 @@ passport.use(
 app.use(viewsRouter);
 
 // search 라우팅
-// app.use('/search', searchRouter);
-
-// 검색 결과 불러오는 api
-app.get('/search', async (req, res, next) => {
-  console.log(req.query.val);
-  // 컬렉션에 접근해서 DB 정보 find 로 가져와
-});
+app.use('/search', searchRouter);
 
 // users 라우팅
 app.use('/users', userRouter);

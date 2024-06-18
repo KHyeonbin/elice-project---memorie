@@ -85,14 +85,21 @@ searchButton.addEventListener('click', handleSearchSubmit);
 async function handleSearchSubmit(e) {
   e.preventDefault();
 
-  const searchStr = searchInput.value; // 검색어
-  // 검색어는 최소 2글자 이상
-  if (searchStr.length <= 1) {
-    return alert('검색어는 최소 2글자 이상이어야 합니다.');
-  }
-
   try {
-    location.href = `/search?val=${searchStr}`;
+    const searchStr = searchInput.value;
+    // 검색어는 최소 2글자 이상
+    if (searchStr.length <= 1) {
+      return alert('검색어는 최소 2글자 이상이어야 합니다.');
+    }
+
+    const encodedSearchStr = encodeURIComponent(searchStr);
+    const response = await fetch(`/search?val=${encodedSearchStr}`);
+    if (!response.ok) {
+      throw new Error('검색 결과를 가져오는 데 실패했습니다.');
+    }
+
+    const products = await response.json();
+    displayProducts(products);
   } catch (err) {
     console.log(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
@@ -101,6 +108,9 @@ async function handleSearchSubmit(e) {
 
 // 상품 목록을 화면에 표시하는 함수
 function displayProducts(products) {
+  // 기존 내용을 지우기
+  productsContainer.innerHTML = '';
+
   products.forEach((product) => {
     const productCard = createProductCard(product);
     productsContainer.appendChild(productCard);

@@ -1,14 +1,26 @@
 import { Router } from 'express';
-// import is from '@sindresorhus/is';
-// 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-// import { productService } from '../services';
+import { productService } from '../services';
 
 const searchRouter = Router();
 
 // 검색 결과 불러오는 api
-searchRouter.get('/search', async (req, res, next) => {
-  console.log(req.query.val);
-  // 컬렉션에 접근해서 DB 정보 find 로 가져와
+searchRouter.get('/', async (req, res, next) => {
+  try {
+    const searchStr = decodeURIComponent(req.query.val);
+    if (!searchStr) {
+      return res.status(400).json({ message: '잘못된 요청: 검색어가 입력되지 않았습니다.' });
+    }
+
+    // 상품명에 검색어가 포함된 항목을 배열로 가져오기
+    const filteredProducts = await productService.getFilteredProductsByName(searchStr);
+    if (!filteredProducts || filteredProducts.length === 0) {
+      return res.status(404).json({ message: '검색 결과가 없습니다.' });
+    }
+
+    res.status(200).json(filteredProducts);
+  } catch (error) {
+    next(error);
+  }
 });
 
 export { searchRouter };
