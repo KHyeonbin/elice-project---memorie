@@ -54,6 +54,12 @@ class MemberService {
     const createdNewMember = await this.memberModel.createByKakao(newMemberInfo);
     return createdNewMember;
   }
+
+  // 사용자 목록을 받음.
+  async getMembers() {
+    const members = await this.memberModel.findAll();
+    return members;
+  }
 }
 
 const memberService = new MemberService(memberModel);
