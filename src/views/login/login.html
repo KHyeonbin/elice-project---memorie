@@ -33,14 +33,18 @@
     <!-- Custom styles for this template -->
     <link href="LoginPage.css" rel="stylesheet" />
   </head>
-  <header class="header">
-    <a href="/" class="logo-link" style="text-decoration: none"><h1 class="header-logo">High Five</h1></a>
-  </header>
+
   <body>
+    <header class="header">
+      <a href="/" class="logo-link" style="text-decoration: none">
+        <h1 class="header-logo">
+          <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" />
+        </h1>
+      </a>
+    </header>
+
     <main class="form-signin">
       <form>
-        <h1 class="h3 mb-3 fw-normal">high Five</h1>
-
         <div class="container mt-5">
           <label class="custom-toggle">
             <input type="checkbox" id="toggleSwitch" checked />
@@ -64,14 +68,16 @@
           <a href="/users/auth/kakao"><img src="btnnK.png" /></a>
           <a href="#"><img src="btnnN.png" /></a>
         </div>
-        <p class="mt-5 mb-3 text-muted">highfive가 처음이세요? <a href="/register">회원가입하기</a></p>
+        <p class="mt-5 mb-3 text-muted">Mémoire가 처음이세요? <a href="/register">회원가입하기</a></p>
       </form>
     </main>
     <footer class="footer">
       <div class="footer-menu row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
         <div class="col mb-3">
-          <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-            <h2>High-Five</h2>
+          <a href="/" class="logo-link" style="text-decoration: none"
+            ><h1 class="footer-logo">
+              <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" />
+            </h1>
             <svg class="bi me-2" width="50" height="30"><use xlink:href="#bootstrap" /></svg>
           </a>
           <p class="text-body-secondary">&copy; 2024</p>

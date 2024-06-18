@@ -27,6 +27,16 @@ class ProductService {
     const product = await this.productModel.findById(productId);
     return product;
   }
+
+  // 제품명에 검색어가 포함된 제품들만 가져오기
+  async getFilteredProductsByName(productKeyword) {
+    const products = await this.productModel.findByName(productKeyword);
+    return products;
+  }
+  
+  async getProductsByCategory(categoryId) {
+    return await productModel.findByCategory(categoryId);
+  }
 }
 
 const productService = new ProductService(productModel);
