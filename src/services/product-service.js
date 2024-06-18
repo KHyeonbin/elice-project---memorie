@@ -33,6 +33,10 @@ class ProductService {
     const products = await this.productModel.findByName(productKeyword);
     return products;
   }
+  
+  async getProductsByCategory(categoryId) {
+    return await productModel.findByCategory(categoryId);
+  }
 }
 
 const productService = new ProductService(productModel);
