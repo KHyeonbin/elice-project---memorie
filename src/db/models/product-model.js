@@ -16,7 +16,7 @@ export class ProductModel {
 
   // 이름에 검색어가 포함된 제품만 찾는 모델
   async findByName(productKeyword) {
-    const products = await Product.find({ name: new RegExp(productKeyword, 'i') });
+    const products = await Product.find({ name: new RegExp(productKeyword, 'gi') });
     return products;
   }
 

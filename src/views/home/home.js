@@ -93,11 +93,6 @@ async function handleSearchSubmit(e) {
 
   try {
     const searchStr = searchInput.value;
-    // 검색어는 최소 2글자 이상
-    if (searchStr.length <= 1) {
-      return alert('검색어는 최소 2글자 이상이어야 합니다.');
-    }
-
     const encodedSearchStr = encodeURIComponent(searchStr);
     const response = await fetch(`/search?val=${encodedSearchStr}`);
     if (!response.ok) {
