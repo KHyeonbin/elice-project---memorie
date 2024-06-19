@@ -56,14 +56,14 @@ deleteButton.addEventListener('click', async () => {
     checkbox.getAttribute('data-id'),
   );
 
-  if (selectedIds.length == 0) {
+  if (selectedIds.length === 0) {
     alert('삭제할 제품을 선택하세요.');
     return;
   }
 
   try {
     // DELETE 요청 보내기
-    const response = await Api.delete('/products/productlist', { selectedIds });
+    const response = await Api.del('/products/productlist', '', { selectedIds });
     if (response.success) {
       alert('선택한 제품이 삭제되었습니다.');
       await fetchProducts(); // 페이지 새로고침 대신 다시 불러오기
@@ -77,7 +77,3 @@ deleteButton.addEventListener('click', async () => {
 });
 
 // 전체 선택/해제 함수
-function toggle(source) {
-  const checkboxes = document.querySelectorAll('.product-checkbox');
-  checkboxes.forEach((checkbox) => (checkbox.checked = source.checked));
-}
