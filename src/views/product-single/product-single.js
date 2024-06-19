@@ -1,5 +1,6 @@
 import * as Api from '/api.js';
-import { getUrlParams, addCommas, checkUrlParams } from '/useful-functions.js';
+import { getUrlParams, addCommas, checkUrlParams, createNavbar } from '/useful-functions.js';
+import { addToDb, putToDb } from '/indexed-db.js';
 
 // 요소(element), input 혹은 상수
 const manufacturerTag = document.querySelector('#manufacturerTag');
@@ -16,6 +17,7 @@ addAllEvents();
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllElements() {
   insertProductData();
+  createNavbar();
 }
 
 // addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
@@ -39,6 +41,7 @@ async function insertProductData() {
       await insertDb(product);
 
       alert('장바구니에 추가되었습니다.');
+      window.history.back();
     } catch (err) {
       // Key already exists 에러면 아래와 같이 alert함
       if (err.message.includes('Key')) {
@@ -46,20 +49,8 @@ async function insertProductData() {
       }
 
       console.log(err);
-    }
-  });
 
-  purchaseButton.addEventListener('click', async () => {
-    try {
-      await insertDb(product);
-
-      window.location.href = '/order';
-    } catch (err) {
-      console.log(err);
-
-      //insertDb가 에러가 되는 경우는 이미 제품이 장바구니에 있던 경우임
-      //따라서 다시 추가 안 하고 바로 order 페이지로 이동함
-      window.location.href = '/order';
+      window.location.href = '/sampleshopcart';
     }
   });
 }

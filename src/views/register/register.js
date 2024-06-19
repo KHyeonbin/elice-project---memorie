@@ -1,4 +1,4 @@
-import { validateEmail } from '/useful-functions.js';
+import { blockIfLogin, validateEmail } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
 const adminSecretLabel = document.querySelector('.admin-secret-label');
@@ -11,6 +11,8 @@ const submitButton = document.querySelector('#submitButton');
 
 const toggleSwitch = document.getElementById('toggleSwitch');
 const loginType = document.getElementById('loginType');
+
+blockIfLogin();
 
 toggleSwitch.addEventListener('change', function () {
   if (this.checked) {

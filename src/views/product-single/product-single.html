@@ -34,8 +34,10 @@
           <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" /></h1
       ></a>
       <div class="header-links">
-        <a href="/login" style="text-decoration: none; color: black">로그인</a>
-        <a href="/register" style="text-decoration: none; color: black">회원가입</a>
+        <ul id="navbar">
+          <li><a href="/register">회원가입</a></li>
+          <li><a href="/login">로그인</a></li>
+        </ul>
         <a href="../shopcart/shopcart.html" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">
             <path
@@ -150,8 +152,7 @@
               </div>
             </div>
             <div class="tile is-child box buttons-container">
-              <button class="button is-warning" id="addToCartButton">장바구니 추가하기</button>
-              <button class="button is-info ml-2" id="purchaseButton">바로 구매하기</button>
+              <button class="button is-dark" id="addToCartButton">장바구니 추가하기</button>
             </div>
           </div>
         </div>
