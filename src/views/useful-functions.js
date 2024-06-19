@@ -78,5 +78,13 @@ export const blockIfNotLogin = () => {
   }
 };
 
+// 긴 문자열에서 뒷부분을 ..으로 바꿈
+export const compressString = (string) => {
+  if (string.length > 10) {
+    return string.substring(0, 9) + '..';
+  }
+  return string;
+};
+
 // 주변 다른 파일 것도 여기서 일괄 export 함
 export { createNavbar } from './navbar.js';

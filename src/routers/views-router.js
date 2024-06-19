@@ -20,6 +20,8 @@ viewsRouter.use('/about', serveStatic('about'));
 viewsRouter.use('/userlists', serveStatic('userlists'));
 viewsRouter.use('/product-manage', serveStatic('product-manage'));
 viewsRouter.use('/orderlist', serveStatic('orderlist'));
+viewsRouter.use('/shopcart', serveStatic('shopcart'));
+viewsRouter.use('/ordercomplete', serveStatic('ordercomplete'));
 viewsRouter.use('/homefragrance', serveStatic('homefragrance'));
 viewsRouter.use('/handcare', serveStatic('handcare'));
 viewsRouter.use('/bodycare', serveStatic('bodycare'));
