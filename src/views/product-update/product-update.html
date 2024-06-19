@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Product</title>
-    <!-- 아이콘 -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+    <!--구글폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap" rel="stylesheet" />
     <!-- bulma css 관련 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
     <!--부트스트랩 css-->
@@ -26,7 +28,10 @@
   <body>
     <!-- 헤더 -->
     <header class="header">
-      <a href="/" class="logo-link"><h1 class="header-logo">Mémoire</h1></a>
+      <a href="/" class="logo-link" style="text-decoration: none"
+        ><h1 class="header-logo">
+          <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" /></h1
+      ></a>
       <div class="header-links">
         <a href="../shopcart/shopcart.html" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">

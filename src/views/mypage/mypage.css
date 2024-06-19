@@ -1,3 +1,7 @@
+* {
+  font-family: 'Noto Serif KR';
+  box-sizing: border-box;
+}
 /* header css */
 .header {
   display: flex;
@@ -127,4 +131,10 @@ td {
 .ul {
   list-style: none;
   padding-left: 0;
+}
+.no-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }
