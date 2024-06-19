@@ -1,3 +1,7 @@
+* {
+  font-family: 'Noto Serif KR';
+  box-sizing: border-box;
+}
 /* header css */
 .header {
   display: flex;
@@ -129,4 +133,23 @@ input:checked + .slider:before {
 
 .admin-secret-label {
   display: none;
+}
+
+/* footer.css */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-menu {
+  width: 90%;
+}
+.ul {
+  list-style: none;
+  padding-left: 0;
+}
+.no-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }
