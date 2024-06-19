@@ -75,6 +75,24 @@ class MemberService {
     return members;
   }
 
+  // 새로운 이름과 이메일 정보로 DB 수정
+  async UpdateMember(prevMemberEmail, newName, newEmail) {
+    const updatedMember = await this.memberModel.update(prevMemberEmail, newName, newEmail);
+    return updatedMember;
+  }
+
+  // DB에서 유저 정보 수정
+  async UpdateMember(prevMemberEmail, newName, newEmail) {
+    const updatedMember = await this.memberModel.update(prevMemberEmail, newName, newEmail);
+    return updatedMember;
+  }
+
+  // DB에서 유저 정보 수정
+  async DeleteMember(memberEmail) {
+    await this.memberModel.delete(memberEmail);
+    return;
+  }
+
   // 로그인
   async getMemberToken(loginInfo) {
     // 객체 destructuring
