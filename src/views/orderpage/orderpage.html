@@ -1,34 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--구글폰트-->
+    <title>주문 페이지</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap" rel="stylesheet" />
-    <title>Mémoire</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/home.css" />
-    <script src="home.js" type="module" defer></script>
+    <!-- 아이콘 -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+    <!-- bulma css 관련 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script defer src="https://kit.fontawesome.com/9daa42bcef.js" crossorigin="anonymous"></script>
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="orderpage.css" />
+    <script src="orderpage.js" type="module" defer></script>
   </head>
   <body>
+    <!-- 헤더 -->
     <header class="header">
       <a href="/" class="logo-link" style="text-decoration: none"
         ><h1 class="header-logo">
           <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" /></h1
       ></a>
       <div class="header-links">
-        <ul id="navbar">
-          <li><a href="/register">회원가입</a></li>
-          <li><a href="/login">로그인</a></li>
-        </ul>
-        <a href="/shopcart" class="header-link">
+        <a href="/login">로그인</a>
+        <a href="/register">회원가입</a>
+        <a href="./shopcart.html" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">
             <path
               d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
@@ -71,7 +78,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Best</a>
               <ul class="dropdown-menu" aria-labelledby="bestDropdown">
-                <li><a class="dropdown-item" href="#">대표상품</a></li>
+                <li><a class="dropdown-item" href="/">대표상품</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -88,7 +95,7 @@
               <a class="nav-link" href="/homefragrance">HomeFragrance</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/about">About</a>
               <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                 <li><a class="dropdown-item" href="/about">브랜드소개</a></li>
               </ul>
@@ -96,7 +103,7 @@
           </ul>
           <form class="d-flex" role="search">
             <div class="input-group">
-              <button class="btn btn-sm search-button" type="submit">
+              <button class="btn btn-sm" type="submit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -110,53 +117,183 @@
                   />
                 </svg>
               </button>
-              <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" />
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
             </div>
           </form>
         </div>
       </div>
     </nav>
-
-    <!-- main 첨부 -->
-
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/12508039/pexels-photo-12508039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/1144176/pexels-photo-1144176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/775687/pexels-photo-775687.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
+    <!-- 배송지 정보 입력 박스 -->
     <section class="section">
       <div class="container">
-        <h1 class="title">All Products</h1>
-        <div id="productsContainer" class="row"></div>
+        <div class="cart-header">
+          <div class="subtitle subtitle-cart" id="subtitleCart">
+            <p class="is-size-6">장바구니 &nbsp; &gt;</p>
+          </div>
+          <div class="title">
+            <p class="is-size-2">주문결제</p>
+          </div>
+          <div class="subtitle">
+            <p class="is-size-6">&gt; &nbsp;주문완료</p>
+          </div>
+        </div>
+
+        <div class="tile is-ancestor">
+          <div class="tile is-parent cart-products">
+            <div class="box delivery-info">
+              <!-- 배송지 정보 -->
+              <p class="subtitle is-4">배송지정보</p>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="receiverName">이름</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="receiverName"
+                        type="text"
+                        placeholder="받는 분 이름을 입력해 주세요."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="receiverPhoneNumber">연락처</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="receiverPhoneNumber"
+                        type="number"
+                        placeholder="- 없이 입력해 주세요."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="address2">주소</label>
+                </div>
+                <div class="field-body search">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="postalCode"
+                        type="text"
+                        placeholder="주소찾기를 클릭해 주세요."
+                        readonly
+                      />
+                    </p>
+                  </div>
+                  <div>
+                    <button class="button is-light is-hovered" id="searchAddressButton">주소찾기</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" id="address1" type="text" placeholder="" autocomplete="on" readonly />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" id="address2" type="text" placeholder="" autocomplete="on" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="requestSelectBox">요청사항</label>
+                </div>
+                <div class="field-body">
+                  <div class="select">
+                    <select id="requestSelectBox">
+                      <option value="0">배송시 요청사항을 선택해 주세요.</option>
+                      <option value="1" class="select-option">직접 수령하겠습니다.</option>
+                      <option value="2" class="select-option">배송 전 연락바랍니다.</option>
+                      <option value="3" class="select-option">부재 시 경비실에 맡겨주세요.</option>
+                      <option value="4" class="select-option">부재 시 문 앞에 놓아주세요.</option>
+                      <option value="5" class="select-option">부재 시 택배함에 넣어주세요.</option>
+                      <option value="6" class="select-option">직접 입력</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal custom-request" id="customRequestContainer">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="customRequest"
+                        type="text"
+                        maxlength="50"
+                        placeholder="최대 50자 입력이 가능합니다."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 주문 정보 요약 -->
+          <div class="tile is-parent tile-order-summary">
+            <div class="box order-summary">
+              <div class="header">
+                <p>결제정보</p>
+              </div>
+              <div class="order-info">
+                <div class="info">
+                  <p>주문상품</p>
+                  <p class="products-title" id="productsTitle"></p>
+                </div>
+                <div class="info">
+                  <p>상품총액</p>
+                  <p id="productsTotal"></p>
+                </div>
+                <div class="info">
+                  <p>배송비</p>
+                  <p id="deliveryFee"></p>
+                </div>
+              </div>
+              <div class="total">
+                <p class="total-label">총 결제금액</p>
+                <p class="total-price" id="orderTotal"></p>
+              </div>
+              <div class="purchase">
+                <button class="button is-info" id="checkoutButton">결제하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

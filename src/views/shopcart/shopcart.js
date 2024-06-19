@@ -26,7 +26,7 @@ function addAllElements() {
 function addAllEvents() {
   allSelectCheckbox.addEventListener('change', toggleAll);
   partialDeleteLabel.addEventListener('click', deleteSelectedItems);
-  purchaseButton.addEventListener('click', navigate('/ordercomplete'));
+  purchaseButton.addEventListener('click', navigate('/orderpage'));
 }
 
 // indexedDB의 cart와 order에서 필요한 정보를 가져온 후

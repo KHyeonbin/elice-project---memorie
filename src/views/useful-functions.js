@@ -86,5 +86,37 @@ export const compressString = (string) => {
   return string;
 };
 
+// 로그인 여부(토큰 존재 여부) 확인
+export const checkLogin = () => {
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    // 현재 페이지의 url 주소 추출하기
+    const pathname = window.location.pathname;
+    const search = window.location.search;
+
+    // 로그인 후 다시 지금 페이지로 자동으로 돌아가도록 하기 위한 준비작업임.
+    window.location.replace(`/login?previouspage=/orderpage`);
+  }
+};
+
+// 배열 혹은 객체에서 랜덤으로 1개 고름
+export const randomPick = (items) => {
+  const isArray = Array.isArray(items);
+
+  // 배열인 경우
+  if (isArray) {
+    const randomIndex = [Math.floor(Math.random() * items.length)];
+
+    return items[randomIndex];
+  }
+
+  // 객체인 경우
+  const keys = Object.keys(items);
+  const randomIndex = [Math.floor(Math.random() * keys.length)];
+  const randomKey = keys[randomIndex];
+
+  return items[randomKey];
+};
+
 // 주변 다른 파일 것도 여기서 일괄 export 함
 export { createNavbar } from './navbar.js';

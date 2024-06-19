@@ -17,6 +17,27 @@ export const createNavbar = () => {
         addNavElements('register login');
       }
       break;
+    /*case '/shopcart/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
+      break;
+    case '/orderpage/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
+      break;
+    case '/ordercomplete/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
+      break;*/
     case '/homefragrance/':
       if (isLogin) {
         addNavElements('logout');
