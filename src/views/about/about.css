@@ -170,16 +170,9 @@ li {
   list-style: none;
   padding-left: 0;
 }
-
-/* footer.css */
-.footer {
-  display: flex;
-  justify-content: center;
-}
-.footer-menu {
-  width: 90%;
-}
-.ul {
-  list-style: none;
-  padding-left: 0;
+.no-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }

@@ -118,39 +118,29 @@
     </nav>
 
     <!-- main 첨부 -->
-
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/12508039/pexels-photo-12508039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
+    <!--슬라이드-->
+    <div class="slide-padding">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3500">
+            <img src="./new1 (1).png" class="d-block w-100 img-fluid" alt="..." />
+          </div>
+          <div class="carousel-item" data-bs-interval="3500">
+            <img src="./new1 (3).png" class="d-block w-100 img-fluid" alt="..." />
+          </div>
+          <div class="carousel-item" data-bs-interval="3500">
+            <img src="./new1 (2).png" class="d-block w-100 img-fluid" alt="..." />
+          </div>
         </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/1144176/pexels-photo-1144176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="https://images.pexels.com/photos/775687/pexels-photo-775687.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
 
     <section class="section">
@@ -167,7 +157,7 @@
             ><h1 class="footer-logo">
               <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" />
             </h1>
-            <svg class="bi me-2" width="50" height="30"><use xlink:href="#bootstrap" /></svg>
+            <svg class="bi mb-2" width="50" height="30"><use xlink:href="#bootstrap" /></svg>
           </a>
           <p class="text-body-secondary">&copy; 2024</p>
 
@@ -224,38 +214,33 @@
           </ul>
         </div>
 
-        <div class="col mb-3"></div>
-
         <div class="col mb-3">
-          <h5>Section</h5>
+          <h3>Menu</h3>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Best</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Perfume</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Hand&Body</a></li>
+            <li class="nav-item mb-2">
+              <a href="#" class="nav-link p-0 text-body-secondary no-link">HomeFragrance</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">About</a></li>
           </ul>
         </div>
 
         <div class="col mb-3">
-          <h5>Section</h5>
+          <h3>　</h3>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
-          </ul>
-        </div>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">대표상품</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
+            <li class="nav-item mb-2">
+              <div class="d-flex">
+                <a href="/handcare" class="nav-link p-0 text-body-secondary">핸드케어</a>
+                <a href="/bodycare" class="nav-link p-0 text-body-secondary" style="margin-left: 50px">바디케어</a>
+              </div>
+            </li>
 
-        <div class="col mb-3">
-          <h5>Section</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
+            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">브랜드소개</a></li>
           </ul>
         </div>
       </div>

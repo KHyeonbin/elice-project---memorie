@@ -37,6 +37,7 @@ function loginRequired(req, res, next) {
 
     return;
   }
+  res.redirect('/login');
 }
 
 export { loginRequired };

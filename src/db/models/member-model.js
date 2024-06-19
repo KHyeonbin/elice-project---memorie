@@ -22,7 +22,7 @@ export class MemberModel {
     return createdNewMember;
   }
 
-  /** (미완성/ 사용자만 사용하게) 사용자인 멤버만 가져오기 */
+  /** 사용자인 멤버만 가져오기 */
   async findUserAll() {
     const users = await Member.find({ isUser: true });
     return users;

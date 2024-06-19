@@ -1,6 +1,7 @@
 /* 공통 스타일 */
-body {
-  font-family: Arial, sans-serif;
+* {
+  font-family: 'Noto Serif KR';
+  box-sizing: border-box;
 }
 
 /* Container 스타일 */

@@ -9,7 +9,7 @@ class MemberService {
 
   // 회원가입
   async addMember(memberInfo) {
-    const { isUser, fullName, email, password } = memberInfo;
+    const { isUser, name, email, password } = memberInfo;
 
     // 이메일 중복 확인
     const member = await this.memberModel.findByEmail(email);
@@ -22,7 +22,7 @@ class MemberService {
     // 우선 비밀번호 해쉬화(암호화)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newMemberInfo = { isUser, fullName, email, password: hashedPassword };
+    const newMemberInfo = { isUser, name, email, password: hashedPassword };
 
     // db에 저장
     const createdNewMember = await this.memberModel.create(newMemberInfo);
@@ -50,8 +50,8 @@ class MemberService {
 
   // 사용자 정보 추가 (카카오)
   async addMemberByKakao(memberInfo) {
-    const { kakaoId, email, name, password } = memberInfo;
-    const newMemberInfo = { kakaoId, email, name, password: password ? await bcrypt.hash(password, 10) : null };
+    const { kakaoId, email, name, password, isUser } = memberInfo;
+    const newMemberInfo = { kakaoId, email, name, password: password ? await bcrypt.hash(password, 10) : null, isUser };
     const createdNewMember = await this.memberModel.createByKakao(newMemberInfo);
     return createdNewMember;
   }
@@ -64,8 +64,8 @@ class MemberService {
 
   // 사용자 정보 추가 (네이버)
   async addMemberByNaver(memberInfo) {
-    const { naverId, email, name, provider } = memberInfo;
-    const newMemberInfo = { naverId, email, name, provider };
+    const { naverId, email, name, password, isUser } = memberInfo;
+    const newMemberInfo = { naverId, email, name, password: password ? await bcrypt.hash(password, 10) : null, isUser };
     const createdNewMember = await this.memberModel.createByNaver(newMemberInfo);
     return createdNewMember;
   }

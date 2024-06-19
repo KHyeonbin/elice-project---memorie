@@ -3,15 +3,12 @@
   box-sizing: border-box;
   align-content: center;
   margin: 0 auto;
+  font-family: 'Noto Serif KR';
 }
 img {
   vertical-align: middle;
 }
 
-a {
-  text-decoration: none;
-  text-align: center;
-}
 /* header css */
 .header {
   display: flex;
@@ -71,4 +68,11 @@ a {
 .register-product-form-box select:focus {
   border-color: #0b079b;
   box-shadow: 0 0 0 0.125em rgba(59, 91, 156, 0.25);
+}
+
+.no-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }
