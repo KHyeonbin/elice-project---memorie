@@ -50,7 +50,7 @@ async function insertProductData() {
 
       console.log(err);
 
-      window.location.href = '/shopcart';
+      window.location.href = '/sampleshopcart';
     }
   });
 }
