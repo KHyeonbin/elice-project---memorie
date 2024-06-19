@@ -61,6 +61,8 @@ async function getDataFromApi() {
 }*/
 
 import * as Api from '/api.js';
+import { createNavbar } from '/useful-functions.js';
+
 // 요소(element) 할당
 const productsContainer = document.querySelector('#productsContainer');
 
@@ -76,6 +78,14 @@ searchButton.addEventListener('click', handleSearchSubmit);
 
 // X를 눌러 검색창을 비우면 다시 전체 상품 표시
 searchInput.addEventListener('input', handleSearchReset);
+
+addAllElements();
+addAllEvents();
+
+async function addAllElements() {
+  createNavbar();
+}
+function addAllEvents() {}
 
 // 전체 상품 불러오기
 async function handleProductLoad() {
@@ -134,6 +144,7 @@ function createProductCard(product) {
 
   const cardDiv = document.createElement('div');
   cardDiv.className = 'card';
+  cardDiv.style.cursor = 'pointer';
   cardDiv.addEventListener('click', () => {
     window.location.href = `/product-single?id=${product._id}`;
   });

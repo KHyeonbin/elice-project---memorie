@@ -1,4 +1,4 @@
-import { validateEmail } from '/useful-functions.js';
+import { validateEmail, blockIfLogin, createNavbar } from '/useful-functions.js';
 
 const toggleSwitch = document.querySelector('#toggleSwitch');
 const loginType = document.querySelector('#loginType');
@@ -17,6 +17,20 @@ const passwordInput = document.querySelector('#passwordInput');
 const submitButton = document.querySelector('#submitButton');
 
 submitButton.addEventListener('click', handleSubmit);
+
+blockIfLogin();
+addAllElements();
+addAllEvents();
+
+// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+async function addAllElements() {
+  createNavbar();
+}
+
+// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllEvents() {
+  submitButton.addEventListener('click', handleSubmit);
+}
 
 // 로그인 진행
 async function handleSubmit(e) {
@@ -63,6 +77,11 @@ async function handleSubmit(e) {
     }
 
     const result = await response.json();
+    const { token } = result;
+
+    // 로그인 성공, 토큰을 세션 스토리지에 저장
+    sessionStorage.setItem('token', token);
+
     if (result) {
       alert(`정상적으로 로그인되었습니다.`);
     }

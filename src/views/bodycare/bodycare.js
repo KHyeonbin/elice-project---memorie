@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   </div>
                 </div>
               `;
+        productDiv.style.cursor = 'pointer';
         productsContainer.appendChild(productDiv);
         productDiv.addEventListener('click', () => {
           window.location.href = `/product-single?id=${product._id}`;

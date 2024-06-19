@@ -58,3 +58,15 @@ export const getUrlParams = () => {
 
   return result;
 };
+// 로그인 상태일 때에는 접근 불가한 페이지로 만듦. (회원가입 페이지 등)
+export const blockIfLogin = () => {
+  const token = sessionStorage.getItem('token');
+
+  if (token) {
+    alert('로그인 상태에서는 접근할 수 없는 페이지입니다.');
+    window.location.replace('/');
+  }
+};
+
+// 주변 다른 파일 것도 여기서 일괄 export 함
+export { createNavbar } from './navbar.js';
