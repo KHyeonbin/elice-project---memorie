@@ -186,8 +186,7 @@ userRouter.get('/user-info', async (req, res, next) => {
       res.redirect('/login');
       return;
     }
-    const { name, email } = req.user;
-    res.status(200).json({ name, email });
+    res.status(200).json(req.user);
   } catch (error) {
     next(error);
   }
