@@ -1,3 +1,11 @@
+import { createNavbar } from '/useful-functions.js';
+
+addAllElements();
+
+async function addAllElements() {
+  createNavbar();
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   fetch('/products/bodycare')
     .then((response) => {
@@ -24,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   </div>
                 </div>
               `;
+        productDiv.style.cursor = 'pointer';
         productsContainer.appendChild(productDiv);
         productDiv.addEventListener('click', () => {
           window.location.href = `/product-single?id=${product._id}`;

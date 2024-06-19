@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--구글폰트-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>주문 페이지</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap" rel="stylesheet" />
@@ -13,22 +13,29 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="bodycare.css" />
-
-    <title>Body care</title>
+    <!-- 아이콘 -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+    <!-- bulma css 관련 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script defer src="https://kit.fontawesome.com/9daa42bcef.js" crossorigin="anonymous"></script>
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="orderpage.css" />
+    <script src="orderpage.js" type="module" defer></script>
   </head>
   <body>
+    <!-- 헤더 -->
     <header class="header">
       <a href="/" class="logo-link" style="text-decoration: none"
         ><h1 class="header-logo">
           <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" /></h1
       ></a>
       <div class="header-links">
-        <ul id="navbar">
-          <li><a href="/register">회원가입</a></li>
-          <li><a href="/login">로그인</a></li>
-        </ul>
-        <a href="../shopcart/shopcart.html" class="header-link">
+        <a href="/login">로그인</a>
+        <a href="/register">회원가입</a>
+        <a href="./shopcart.html" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">
             <path
               d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
@@ -116,11 +123,177 @@
         </div>
       </div>
     </nav>
-
+    <!-- 배송지 정보 입력 박스 -->
     <section class="section">
       <div class="container">
-        <h1 class="title">Body Care</h1>
-        <div id="productsContainer" class="row"></div>
+        <div class="cart-header">
+          <div class="subtitle subtitle-cart" id="subtitleCart">
+            <p class="is-size-6">장바구니 &nbsp; &gt;</p>
+          </div>
+          <div class="title">
+            <p class="is-size-2">주문결제</p>
+          </div>
+          <div class="subtitle">
+            <p class="is-size-6">&gt; &nbsp;주문완료</p>
+          </div>
+        </div>
+
+        <div class="tile is-ancestor">
+          <div class="tile is-parent cart-products">
+            <div class="box delivery-info">
+              <!-- 배송지 정보 -->
+              <p class="subtitle is-4">배송지정보</p>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="receiverName">이름</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="receiverName"
+                        type="text"
+                        placeholder="받는 분 이름을 입력해 주세요."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="receiverPhoneNumber">연락처</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="receiverPhoneNumber"
+                        type="number"
+                        placeholder="- 없이 입력해 주세요."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="address2">주소</label>
+                </div>
+                <div class="field-body search">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="postalCode"
+                        type="text"
+                        placeholder="주소찾기를 클릭해 주세요."
+                        readonly
+                      />
+                    </p>
+                  </div>
+                  <div>
+                    <button class="button is-light is-hovered" id="searchAddressButton">주소찾기</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" id="address1" type="text" placeholder="" autocomplete="on" readonly />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" id="address2" type="text" placeholder="" autocomplete="on" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="requestSelectBox">요청사항</label>
+                </div>
+                <div class="field-body">
+                  <div class="select">
+                    <select id="requestSelectBox">
+                      <option value="0">배송시 요청사항을 선택해 주세요.</option>
+                      <option value="1" class="select-option">직접 수령하겠습니다.</option>
+                      <option value="2" class="select-option">배송 전 연락바랍니다.</option>
+                      <option value="3" class="select-option">부재 시 경비실에 맡겨주세요.</option>
+                      <option value="4" class="select-option">부재 시 문 앞에 놓아주세요.</option>
+                      <option value="5" class="select-option">부재 시 택배함에 넣어주세요.</option>
+                      <option value="6" class="select-option">직접 입력</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal custom-request" id="customRequestContainer">
+                <div class="field-label is-normal no-label"></div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        id="customRequest"
+                        type="text"
+                        maxlength="50"
+                        placeholder="최대 50자 입력이 가능합니다."
+                        autocomplete="on"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 주문 정보 요약 -->
+          <div class="tile is-parent tile-order-summary">
+            <div class="box order-summary">
+              <div class="header">
+                <p>결제정보</p>
+              </div>
+              <div class="order-info">
+                <div class="info">
+                  <p>주문상품</p>
+                  <p class="products-title" id="productsTitle"></p>
+                </div>
+                <div class="info">
+                  <p>상품총액</p>
+                  <p id="productsTotal"></p>
+                </div>
+                <div class="info">
+                  <p>배송비</p>
+                  <p id="deliveryFee"></p>
+                </div>
+              </div>
+              <div class="total">
+                <p class="total-label">총 결제금액</p>
+                <p class="total-price" id="orderTotal"></p>
+              </div>
+              <div class="purchase">
+                <button class="button is-info" id="checkoutButton">결제하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -188,39 +361,42 @@
           </ul>
         </div>
 
+        <div class="col mb-3"></div>
+
         <div class="col mb-3">
-          <h3>Menu</h3>
+          <h5>Section</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Best</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Perfume</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Hand&Body</a></li>
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-body-secondary no-link">HomeFragrance</a>
-            </li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">About</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
           </ul>
         </div>
 
         <div class="col mb-3">
-          <h3>　</h3>
+          <h5>Section</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">대표상품</a></li>
-            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
-            <li class="nav-item mb-2">
-              <div class="d-flex">
-                <a href="/handcare" class="nav-link p-0 text-body-secondary">핸드케어</a>
-                <a href="/bodycare" class="nav-link p-0 text-body-secondary" style="margin-left: 50px">바디케어</a>
-              </div>
-            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          </ul>
+        </div>
 
-            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
-            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">브랜드소개</a></li>
+        <div class="col mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
           </ul>
         </div>
       </div>
     </footer>
-
-    <script type="module" src="bodycare.js" defer></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

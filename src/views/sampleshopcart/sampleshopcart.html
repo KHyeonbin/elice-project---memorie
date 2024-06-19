@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>장바구니</title>
     <!--구글폰트-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,9 +14,12 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="bodycare.css" />
-
-    <title>Body care</title>
+    <!-- bulma css 관련 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script defer src="https://kit.fontawesome.com/9daa42bcef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="sampleshopcart.css" />
+    <script src="sampleshopcart.js" type="module" defer></script>
   </head>
   <body>
     <header class="header">
@@ -24,11 +28,9 @@
           <img src="../logo.jpg" alt="mémoire-logo" style="width: 100%; height: auto; max-width: 250px" /></h1
       ></a>
       <div class="header-links">
-        <ul id="navbar">
-          <li><a href="/register">회원가입</a></li>
-          <li><a href="/login">로그인</a></li>
-        </ul>
-        <a href="../shopcart/shopcart.html" class="header-link">
+        <a href="/login">로그인</a>
+        <a href="/register">회원가입</a>
+        <a href="./shopcart.html" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">
             <path
               d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
@@ -117,10 +119,69 @@
       </div>
     </nav>
 
+    <!-- 장바구니 -->
     <section class="section">
       <div class="container">
-        <h1 class="title">Body Care</h1>
-        <div id="productsContainer" class="row"></div>
+        <div class="cart-header">
+          <div class="title">
+            <p class="is-size-2">장바구니</p>
+          </div>
+          <div class="subtitle">
+            <p class="is-size-6">&gt; &nbsp; 주문결제 &nbsp; &gt; &nbsp;주문완료</p>
+          </div>
+        </div>
+
+        <div class="tile is-ancestor">
+          <div class="tile is-8 is-parent cart-products">
+            <!-- 장바구니에 담긴 상품 모음 -->
+            <div class="box cart-products-container" id="cartProductsContainer">
+              <div class="cart-products-header">
+                <label class="checkbox">
+                  <input type="checkbox" id="allSelectCheckbox" />
+                  <p class="help">전체선택</p>
+                </label>
+                <label class="seperator">
+                  <p class="help help-seperator">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                </label>
+                <label class="delete-part" id="partialDeleteLabel">
+                  <p class="help">선택삭제</p>
+                </label>
+              </div>
+
+              <!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
+            </div>
+          </div>
+
+          <!-- 선택한 상품 총 요약 -->
+          <div class="tile is-parent tile-order-summary">
+            <div class="box order-summary">
+              <div class="header">
+                <p>결제정보</p>
+              </div>
+              <div class="order-info">
+                <div class="info">
+                  <p>상품수</p>
+                  <p id="productsCount"></p>
+                </div>
+                <div class="info">
+                  <p>상품금액</p>
+                  <p id="productsTotal"></p>
+                </div>
+                <div class="info">
+                  <p>배송비</p>
+                  <p id="deliveryFee"></p>
+                </div>
+              </div>
+              <div class="total">
+                <p class="total-label">총 결제금액</p>
+                <p class="total-price" id="orderTotal"></p>
+              </div>
+              <div class="purchase">
+                <button class="button is-info" id="purchaseButton">구매하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -188,39 +249,42 @@
           </ul>
         </div>
 
+        <div class="col mb-3"></div>
+
         <div class="col mb-3">
-          <h3>Menu</h3>
+          <h5>Section</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Best</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Perfume</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">Hand&Body</a></li>
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-body-secondary no-link">HomeFragrance</a>
-            </li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary no-link">About</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
           </ul>
         </div>
 
         <div class="col mb-3">
-          <h3>　</h3>
+          <h5>Section</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">대표상품</a></li>
-            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
-            <li class="nav-item mb-2">
-              <div class="d-flex">
-                <a href="/handcare" class="nav-link p-0 text-body-secondary">핸드케어</a>
-                <a href="/bodycare" class="nav-link p-0 text-body-secondary" style="margin-left: 50px">바디케어</a>
-              </div>
-            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          </ul>
+        </div>
 
-            <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
-            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">브랜드소개</a></li>
+        <div class="col mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
           </ul>
         </div>
       </div>
     </footer>
-
-    <script type="module" src="bodycare.js" defer></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

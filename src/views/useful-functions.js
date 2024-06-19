@@ -58,3 +58,65 @@ export const getUrlParams = () => {
 
   return result;
 };
+// 로그인 상태일 때에는 접근 불가한 페이지로 만듦. (회원가입 페이지 등)
+export const blockIfLogin = () => {
+  const token = sessionStorage.getItem('token');
+
+  if (token) {
+    alert('로그인 상태에서는 접근할 수 없는 페이지입니다.');
+    window.history.back();
+  }
+};
+
+//로그인 안했으면 접근금지 및 로그인페이지로 이동
+export const blockIfNotLogin = () => {
+  const token = sessionStorage.getItem('token');
+
+  if (!token) {
+    alert('로그인 후 접근할 수 있는 페이지입니다.');
+    window.location.replace('/login'); // 로그인 페이지로 리디렉션
+  }
+};
+
+// 긴 문자열에서 뒷부분을 ..으로 바꿈
+export const compressString = (string) => {
+  if (string.length > 10) {
+    return string.substring(0, 9) + '..';
+  }
+  return string;
+};
+
+// 로그인 여부(토큰 존재 여부) 확인
+export const checkLogin = () => {
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    // 현재 페이지의 url 주소 추출하기
+    const pathname = window.location.pathname;
+    const search = window.location.search;
+
+    // 로그인 후 다시 지금 페이지로 자동으로 돌아가도록 하기 위한 준비작업임.
+    window.location.replace(`/login?previouspage=/orderpage`);
+  }
+};
+
+// 배열 혹은 객체에서 랜덤으로 1개 고름
+export const randomPick = (items) => {
+  const isArray = Array.isArray(items);
+
+  // 배열인 경우
+  if (isArray) {
+    const randomIndex = [Math.floor(Math.random() * items.length)];
+
+    return items[randomIndex];
+  }
+
+  // 객체인 경우
+  const keys = Object.keys(items);
+  const randomIndex = [Math.floor(Math.random() * keys.length)];
+  const randomKey = keys[randomIndex];
+
+  return items[randomKey];
+};
+
+// 주변 다른 파일 것도 여기서 일괄 export 함
+export { createNavbar } from './navbar.js';
