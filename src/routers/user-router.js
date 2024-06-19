@@ -8,7 +8,8 @@ import LocalStrategy from 'passport-local';
 import bcrypt from 'bcrypt';
 import MongoStore from 'connect-mongo';
 import { authRouter } from './auth-router';
-import '../passport/kakao-strategy'; // passport-kakao 불러오기
+import '../passport/kakao-strategy';
+import '../passport/naver-strategy';
 
 const userRouter = Router();
 
