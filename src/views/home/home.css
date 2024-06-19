@@ -5,6 +5,11 @@
 button {
   font-family: 'Noto Serif KR';
 }
+a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
 
 .header {
   display: flex;
