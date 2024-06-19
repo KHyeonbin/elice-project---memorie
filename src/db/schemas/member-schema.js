@@ -19,13 +19,14 @@ const MemberSchema = new Schema(
       sparse: true,
       trim: true,
       lowercase: true,
+      required: true,
     },
     password: {
       type: String,
     },
     name: {
       type: String,
-      required: false,
+      required: true,
     },
     phoneNumber: {
       type: String,
@@ -47,6 +48,7 @@ const MemberSchema = new Schema(
     isUser: {
       type: Boolean,
       default: true,
+      required: true,
     },
     provider: {
       type: String,
