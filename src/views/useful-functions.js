@@ -64,7 +64,17 @@ export const blockIfLogin = () => {
 
   if (token) {
     alert('로그인 상태에서는 접근할 수 없는 페이지입니다.');
-    window.location.replace('/');
+    window.history.back();
+  }
+};
+
+//로그인 안했으면 접근금지 및 로그인페이지로 이동
+export const blockIfNotLogin = () => {
+  const token = sessionStorage.getItem('token');
+
+  if (!token) {
+    alert('로그인 후 접근할 수 있는 페이지입니다.');
+    window.location.replace('/login'); // 로그인 페이지로 리디렉션
   }
 };
 
