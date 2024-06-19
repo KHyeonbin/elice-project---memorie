@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import { viewsRouter, userRouter, adminRouter, productRouter, searchRouter } from './routers';
+import { orderRouter, viewsRouter, userRouter, adminRouter, productRouter, searchRouter } from './routers';
 import { errorHandler } from './middlewares';
 
 //추가한 부분 8-11
@@ -23,6 +23,8 @@ app.use(viewsRouter);
 
 // search 라우팅
 app.use('/search', searchRouter);
+
+app.use('/orders', orderRouter);
 
 // users 라우팅
 app.use('/users', userRouter);
