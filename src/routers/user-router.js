@@ -59,9 +59,9 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  const { _id, email, isUser } = user;
+  const { _id, name, email, isUser } = user;
   process.nextTick(() => {
-    done(null, { id: _id, email, isUser });
+    done(null, { id: _id, name, email, isUser });
   });
 });
 
@@ -85,12 +85,12 @@ userRouter.post('/register', async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const { isUser, fullName, email, password } = req.body;
+    const { isUser, name, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await memberService.addMember({
       isUser,
-      fullName,
+      name,
       email,
       password,
     });
@@ -180,11 +180,14 @@ userRouter.patch('/users/:userId', loginRequired, async function (req, res, next
   }
 });
 
-userRouter.get('/mypage', loginRequired, async (req, res, next) => {
+userRouter.get('/user-info', async (req, res, next) => {
   try {
-    const userInfo = await userService.getUserById(userId);
-
-    res.status(200).json(userInfo);
+    if (!req.user) {
+      res.redirect('/login');
+      return;
+    }
+    const { name, email } = req.user;
+    res.status(200).json({ name, email });
   } catch (error) {
     next(error);
   }
