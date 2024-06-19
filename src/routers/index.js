@@ -7,3 +7,4 @@ export * from './product-router';
 export * from './admin-router';
 export * from './auth-router';
 export * from './search-router';
+export * from './order-router';

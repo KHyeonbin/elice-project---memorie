@@ -4,29 +4,17 @@ import { deleteFromDb, getFromDb, putToDb } from '/indexed-db.js';
 
 // 요소(element), input 혹은 상수
 const subtitleCart = document.querySelector('#subtitleCart');
-const receiverNameInput = document.querySelector('#receiverName');
-const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
+const nameInput = document.querySelector('#name');
+const numberumberInput = document.querySelector('#number');
 const postalCodeInput = document.querySelector('#postalCode');
 const searchAddressButton = document.querySelector('#searchAddressButton');
 const address1Input = document.querySelector('#address1');
 const address2Input = document.querySelector('#address2');
-const requestSelectBox = document.querySelector('#requestSelectBox');
-const customRequestContainer = document.querySelector('#customRequestContainer');
-const customRequestInput = document.querySelector('#customRequest');
 const productsTitleElem = document.querySelector('#productsTitle');
 const productsTotalElem = document.querySelector('#productsTotal');
 const deliveryFeeElem = document.querySelector('#deliveryFee');
-const orderTotalElem = document.querySelector('#orderTotal');
+const priceElem = document.querySelector('#price');
 const checkoutButton = document.querySelector('#checkoutButton');
-
-const requestOption = {
-  1: '직접 수령하겠습니다.',
-  2: '배송 전 연락바랍니다.',
-  3: '부재 시 경비실에 맡겨주세요.',
-  4: '부재 시 문 앞에 놓아주세요.',
-  5: '부재 시 택배함에 넣어주세요.',
-  6: '직접 입력',
-};
 
 checkLogin();
 addAllElements();
@@ -36,17 +24,16 @@ addAllEvents();
 function addAllElements() {
   createNavbar();
   insertOrderSummary();
-  insertMemberData();
 }
 
 // addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  subtitleCart.addEventListener('click', navigate('/shopcart'));
+  subtitleCart.addEventListener('click', navigate('/sampleshopcart'));
   searchAddressButton.addEventListener('click', searchAddress);
-  requestSelectBox.addEventListener('change', handleRequestChange);
   checkoutButton.addEventListener('click', doCheckout);
 }
 
+//수정필요
 // Daum 주소 API (사용 설명 https://postcode.map.daum.net/guide)
 function searchAddress() {
   new daum.Postcode({
@@ -122,97 +109,43 @@ async function insertOrderSummary() {
 
   if (hasItemToCheckout) {
     deliveryFeeElem.innerText = `3,000원`;
-    orderTotalElem.innerText = `${addCommas(productsTotal + 3000)}원`;
+    priceElem.innerText = `${addCommas(productsTotal + 3000)}원`;
   } else {
     deliveryFeeElem.innerText = `0원`;
-    orderTotalElem.innerText = `0원`;
+    priceElem.innerText = `0원`;
   }
 
   receiverNameInput.focus();
 }
 
-async function insertMenberData() {
-  const memberData = await Api.get('/users/memberlist');
-  const { name, phoneNumber, address } = memberData;
-
-  // 만약 db에 데이터 값이 있었다면, 배송지정보에 삽입
-  if (name) {
-    receiverNameInput.value = name;
-  }
-
-  if (phoneNumber) {
-    receiverPhoneNumberInput.value = phoneNumber;
-  }
-
-  if (address) {
-    postalCode.value = address.postalCode;
-    address1Input.value = address.address1;
-    address2Input.value = address.address2;
-  }
-}
-
-// "직접 입력" 선택 시 input칸 보이게 함
-// default값(배송 시 요청사항을 선택해 주세여) 이외를 선택 시 글자가 진해지도록 함
-function handleRequestChange(e) {
-  const type = e.target.value;
-
-  if (type === '6') {
-    customRequestContainer.style.display = 'flex';
-    customRequestInput.focus();
-  } else {
-    customRequestContainer.style.display = 'none';
-  }
-
-  if (type === '0') {
-    requestSelectBox.style.color = 'rgba(0, 0, 0, 0.3)';
-  } else {
-    requestSelectBox.style.color = 'rgba(0, 0, 0, 1)';
-  }
-}
-
 // 결제 진행
 async function doCheckout() {
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
+  const name = nameInput.value;
+  const number = numberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
-  const requestType = requestSelectBox.value;
-  const customRequest = customRequestInput.value;
   const summaryTitle = productsTitleElem.innerText;
-  const totalPrice = convertToNumber(orderTotalElem.innerText);
+  const price = convertToNumber(priceElem.innerText);
   const { selectedIds } = await getFromDb('order', 'summary');
 
-  if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
+  if (!name || !number || !postalCode || !address2) {
     return alert('배송지 정보를 모두 입력해 주세요.');
-  }
-
-  // 요청사항의 종류에 따라 request 문구가 달라짐
-  let request;
-  if (requestType === '0') {
-    request = '요청사항 없음.';
-  } else if (requestType === '6') {
-    if (!customRequest) {
-      return alert('요청사항을 작성해 주세요.');
-    }
-    request = customRequest;
-  } else {
-    request = requestOption[requestType];
   }
 
   const address = {
     postalCode,
     address1,
     address2,
-    receiverName,
-    receiverPhoneNumber,
+    name,
+    number,
   };
 
   try {
     // 전체 주문을 등록함 (라우터 짜야할듯 오더정보저장)
-    const orderData = await Api.post('/api/order', {
+    const orderData = await Api.post('/orders/order', {
       summaryTitle,
-      totalPrice,
+      price,
       address,
       request,
     });
