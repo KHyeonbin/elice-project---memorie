@@ -5,11 +5,6 @@
 button {
   font-family: 'Noto Serif KR';
 }
-a {
-  text-decoration: none;
-  text-align: center;
-  color: black;
-}
 
 .header {
   display: flex;
@@ -98,6 +93,9 @@ a {
   font-size: 23px;
   font-weight: bold;
 }
+.title {
+  margin-bottom: 30px;
+}
 
 /* footer.css */
 .footer {
@@ -110,4 +108,10 @@ a {
 .ul {
   list-style: none;
   padding-left: 0;
+}
+.no-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }

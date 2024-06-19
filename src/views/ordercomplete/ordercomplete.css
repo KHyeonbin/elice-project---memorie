@@ -1,3 +1,7 @@
+* {
+  font-family: 'Noto Serif KR';
+  box-sizing: border-box;
+}
 /* header css */
 .header {
   display: flex;
