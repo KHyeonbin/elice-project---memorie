@@ -118,6 +118,7 @@
         <div class="mypage_user-info-container">
           <div class="mypage_user-info-container--left">
             <h6 class="user-data--name"></h6>
+            <input type="text" class="user-name-edit" style="display: none" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="150"
@@ -132,10 +133,11 @@
               />
             </svg>
             <p class="user-data--email"></p>
+            <input type="text" class="user-email-edit" style="display: none" />
           </div>
           <div class="mypage_user-info-container--right">
-            <button type="button" class="btn btn-primary mypage-btn">회원정보 수정</button>
-            <button type="button" class="btn btn-primary mypage-btn">회원 탈퇴</button>
+            <button type="button" class="btn btn-primary mypage-btn user-edit--btn">회원정보 수정</button>
+            <button type="button" class="btn btn-primary mypage-btn user-delete--btn">회원 탈퇴</button>
           </div>
         </div>
       </section>

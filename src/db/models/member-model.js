@@ -28,13 +28,24 @@ export class MemberModel {
     return users;
   }
 
-  /** 미완성 */
-  async update({ userId, update }) {
-    const filter = { _id: userId };
+  /** 기존 이메일 기반 새로운 이름과 이메일로 수정 */
+  async update(prevMemberEmail, newName, newEmail) {
+    const filter = { email: prevMemberEmail };
+    const update = { name: newName, email: newEmail };
     const option = { returnOriginal: false };
 
-    const updatedUser = await User.findOneAndUpdate(filter, update, option);
+    const updatedUser = await Member.findOneAndUpdate(filter, update, option);
     return updatedUser;
+  }
+
+  async delete(memberEmail) {
+    try {
+      await Member.findOneAndDelete({ email: memberEmail });
+      return;
+    } catch (error) {
+      console.error('DB 삭제 실패', error);
+      throw error;
+    }
   }
 
   /** 카카오 사용자 정보 조회 */
