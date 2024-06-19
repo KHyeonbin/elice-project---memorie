@@ -48,6 +48,12 @@ export class MemberModel {
     const createdNewMember = await Member.create(memberInfo);
     return createdNewMember;
   }
+
+  //전체유저조회
+  async findAll() {
+    const members = await Member.find({});
+    return members;
+  }
 }
 
 const memberModel = new MemberModel();
