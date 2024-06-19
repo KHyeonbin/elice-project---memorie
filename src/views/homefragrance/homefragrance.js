@@ -1,5 +1,12 @@
 // import * as Api from '/api.js';
 // 요소(element) 할당
+import { createNavbar } from '/useful-functions.js';
+
+addAllElements();
+
+async function addAllElements() {
+  createNavbar();
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   fetch('/products/homefragrance')

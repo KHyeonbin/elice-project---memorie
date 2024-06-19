@@ -1,3 +1,11 @@
+import { createNavbar } from '/useful-functions.js';
+
+addAllElements();
+
+async function addAllElements() {
+  createNavbar();
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   fetch('/products/bodycare')
     .then((response) => {

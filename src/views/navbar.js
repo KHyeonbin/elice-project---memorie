@@ -10,54 +10,55 @@ export const createNavbar = () => {
         addNavElements('register login');
       }
       break;
-    /*case '/account/orders/':
-      addNavElements('admin account logout');
+    case '/about/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/account/security/':
-      addNavElements('admin account logout');
+    case '/homefragrance/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/account/signout/':
-      addNavElements('admin account logout');
+    case '/handcare/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/account/':
-      addNavElements('admin logout');
+    case '/bodycare/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/admin/orders/':
-      addNavElements('admin account logout');
+    case '/perfume/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/admin/users/':
-      addNavElements('admin account logout');
+    case '/users/mypage/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/admin/':
-      addNavElements('account logout');
+    case '/product-single/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
       break;
-    case '/cart/':
-      addNavElements('admin register login account logout');
-      break;
-    case '/category/add/':
-      addNavElements('admin account productAdd logout');
-      break;
-    case '/login/':
-      addNavElements('register');
-      break;
-    case '/order/complete/':
-      addNavElements('admin account logout');
-      break;
-    case '/order/':
-      addNavElements('admin account logout');
-      break;
-    case '/product/add/':
-      addNavElements('admin account logout');
-      break;
-    case '/product/detail/':
-      addNavElements('admin register login account logout');
-      break;
-    case '/product/list/':
-      addNavElements('admin register login account logout');
-      break;
-    case '/register/':
-      addNavElements('login');
-      break;*/
 
     default:
   }

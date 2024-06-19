@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { getUrlParams, addCommas, checkUrlParams } from '/useful-functions.js';
+import { getUrlParams, addCommas, checkUrlParams, createNavbar } from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
 const manufacturerTag = document.querySelector('#manufacturerTag');
@@ -16,6 +16,7 @@ addAllEvents();
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllElements() {
   insertProductData();
+  createNavbar();
 }
 
 // addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
