@@ -21,7 +21,7 @@ passport.use(
           kakaoId: profile.id,
           email: profile._json && profile._json.kakao_account.email,
           name: profile.displayName,
-          // 추가적으로 필요한 정보가 있다면 설정합니다.
+          isUser: true,
         });
         return done(null, newUser);
       } catch (error) {

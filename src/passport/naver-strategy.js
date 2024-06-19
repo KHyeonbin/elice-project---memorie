@@ -22,6 +22,7 @@ passport.use(
           naverId: profile.id,
           email: profile.email,
           name: profile.name,
+          isUser: true,
           provider: 'naver',
         });
         return done(null, newUser);

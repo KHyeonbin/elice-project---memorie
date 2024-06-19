@@ -31,18 +31,18 @@ async function handleSubmit(e) {
   e.preventDefault();
 
   const isUser = toggleSwitch.checked; // true => 사용자, false => 관리자
-  const fullName = fullNameInput.value;
+  const name = fullNameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
 
   // 잘 입력했는지 확인
-  const isFullNameValid = fullName.length >= 2;
+  const isNameValid = name.length >= 2;
   const isEmailValid = validateEmail(email);
   const isPasswordValid = password.length >= 4;
   const isPasswordSame = password === passwordConfirm;
 
-  if (!isFullNameValid || !isPasswordValid) {
+  if (!isNameValid || !isPasswordValid) {
     return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
   }
 
@@ -56,7 +56,9 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = { isUser, fullName, email, password };
+    const data = { isUser, name, email, password };
+
+    console.log(data.isUser);
 
     if (!isUser) {
       data.adminSecretKey = adminSecretInput.value;
