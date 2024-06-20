@@ -173,7 +173,6 @@ async function saveProductData(e) {
     method: 'PATCH',
     headers: {
       ...headers,
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
     body: formData,
   });
