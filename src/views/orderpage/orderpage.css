@@ -76,6 +76,10 @@ li {
   font-weight: bold;
 }
 
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
 .cart-header {
   border-bottom: #dbdbdb solid 1px;
   padding-bottom: 0.5rem;
