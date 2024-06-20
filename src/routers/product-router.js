@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { productService } from '../services/product-service';
+import { productService } from '../services';
 
 // S3 라이브러리(이미지 업로드) 셋팅
 import { S3Client } from '@aws-sdk/client-s3';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
+import { memberService } from '../services';
 
 const s3 = new S3Client({
   region: 'ap-northeast-2', // 지역(region) : Seoul
@@ -118,7 +119,6 @@ productRouter.get('/perfume', async (req, res, next) => {
     next(error);
   }
 });
-export { productRouter };
 
 //특정상품조회
 productRouter.get('/product/:productId', async (req, res, next) => {
@@ -174,3 +174,22 @@ productRouter.patch('/amend/:productId', upload.single('image-file'), async func
     next(error);
   }
 });
+
+// 선택한 상품을 DB에서 제거하는 api
+productRouter.delete('/productlist', async (req, res, next) => {
+  const { selectedIds } = req.body; // 배열 형태로 id가 들어옴
+
+  if (!Array.isArray(selectedIds) || selectedIds.length === 0) {
+    return res.status(400).json({ reason: '이미 존재하지 않는 상품을 삭제하려고 시도했습니다. 다시 확인해주세요.' });
+  }
+
+  try {
+    // productService로 삭제 이벤트 위임
+    await productService.deleteProductsById(selectedIds);
+    res.json({ success: true, message: '선택된 상품을 제거 완료했습니다.' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+export { productRouter };

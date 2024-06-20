@@ -60,6 +60,12 @@ class ProductService {
 
     return product;
   }
+
+  // 여러 개의 product를 가져와 DB에서 제거
+  async deleteProductsById(productIdArr) {
+    await this.productModel.deleteByIdArr(productIdArr);
+    return;
+  }
 }
 
 const productService = new ProductService(productModel);
