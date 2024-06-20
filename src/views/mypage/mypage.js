@@ -1,3 +1,7 @@
+import { blockIfNotLogin } from '/useful-functions.js';
+
+blockIfNotLogin();
+
 const userDataName = document.querySelector('.user-data--name');
 const userDataEmail = document.querySelector('.user-data--email');
 
