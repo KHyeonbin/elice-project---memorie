@@ -15,11 +15,6 @@ button {
   font-size: 50px;
   margin: 40px 0 30px 0;
 }
-a {
-  text-decoration: none;
-  text-align: center;
-  color: black;
-}
 
 /* header css */
 .header {
@@ -115,6 +110,7 @@ a {
   align-content: center;
   background-color: var(--color-bt);
   border: 1px solid rgba(0, 0, 0, 0.2);
+  color: white;
   border-radius: 20px;
   color: white;
 }
@@ -154,6 +150,10 @@ td {
 .nav-link:hover {
   font-size: 23px;
   font-weight: bold;
+}
+
+h4 {
+  margin-bottom: 15px;
 }
 
 /* footer.css */

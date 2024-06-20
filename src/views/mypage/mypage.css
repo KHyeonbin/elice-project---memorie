@@ -36,6 +36,12 @@
 .header-link {
   display: block;
 }
+
+.header-logo {
+  font-size: 50px;
+  margin: 40px 0 30px 0;
+}
+
 .logo-link {
   text-decoration: none;
   color: black;
