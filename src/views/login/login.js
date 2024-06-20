@@ -45,7 +45,7 @@ async function handleSubmit(e) {
   const isPasswordValid = password.length >= 4;
 
   if (!isEmailValid || !isPasswordValid) {
-    return alert('비밀번호가 4글자 이상인지, 이메일 형태가 맞는지 확인해 주세요.');
+    return alert('아이디는 이메일 형태로 작성해주세요.');
   }
 
   // 로그인 api 요청
@@ -89,6 +89,6 @@ async function handleSubmit(e) {
     window.location.href = isUser ? '/' : '/admin';
   } catch (err) {
     console.error(err.stack);
-    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
+    alert(`비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.`);
   }
 }

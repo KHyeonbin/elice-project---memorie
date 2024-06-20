@@ -9,11 +9,6 @@ button {
   font-size: 50px;
   margin: 40px 0 30px 0;
 }
-a {
-  text-decoration: none;
-  text-align: center;
-  color: black;
-}
 
 /* header css */
 .header {
@@ -148,6 +143,10 @@ td {
 .nav-link:hover {
   font-size: 23px;
   font-weight: bold;
+}
+
+h4 {
+  margin-bottom: 15px;
 }
 
 /* footer.css */
