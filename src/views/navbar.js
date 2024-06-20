@@ -17,7 +17,7 @@ export const createNavbar = () => {
         addNavElements('register login');
       }
       break;
-    /*case '/shopcart/':
+    case '/shopcart/':
       if (isLogin) {
         addNavElements('logout');
       } else {
@@ -37,7 +37,7 @@ export const createNavbar = () => {
       } else {
         addNavElements('register login');
       }
-      break;*/
+      break;
     case '/homefragrance/':
       if (isLogin) {
         addNavElements('logout');
@@ -74,6 +74,13 @@ export const createNavbar = () => {
       }
       break;
     case '/product-single/':
+      if (isLogin) {
+        addNavElements('logout');
+      } else {
+        addNavElements('register login');
+      }
+      break;
+    case '/sampleshopcart/':
       if (isLogin) {
         addNavElements('logout');
       } else {

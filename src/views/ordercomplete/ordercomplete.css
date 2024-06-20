@@ -11,6 +11,21 @@
 button {
   font-family: 'Noto Serif KR';
 }
+
+a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+ul {
+  list-style: none;
+  padding-left: 5px;
+}
+li {
+  float: left;
+  margin-right: 10px;
+}
+
 .header-logo {
   font-size: 50px;
   margin: 40px 0 30px 0;
