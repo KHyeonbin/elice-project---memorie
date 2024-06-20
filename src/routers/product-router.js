@@ -135,12 +135,6 @@ productRouter.get('/product/:productId', async (req, res, next) => {
 //상품 내용 수정
 productRouter.patch('/amend/:productId', upload.single('image-file'), async function (req, res, next) {
   try {
-    // content-type 을 application/json 로 프론트에서
-    // 설정 안 하고 요청하면, body가 비어 있게 됨.
-    if (is.emptyObject(req.body)) {
-      throw new Error('headers의 Content-Type을 application/json으로 설정해주세요');
-    }
-
     // params로부터 id를 가져옴
     const productId = req.params.productId;
 
@@ -149,8 +143,9 @@ productRouter.patch('/amend/:productId', upload.single('image-file'), async func
     const category = req.body.category;
     const manufacturer = req.body.manufacturer;
     const description = req.body.description;
-    const imageUrl = req.body.imageUrl;
     const price = req.body.price;
+
+    const imageUrl = req.file ? req.file.location : null;
 
     const productInfoRequired = { productId };
 
