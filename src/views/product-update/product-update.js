@@ -150,56 +150,38 @@ function disableForm() {
 async function saveProductData(e) {
   e.preventDefault();
 
-  const name = nameInput.value;
-  const category = categorySelectBox.value;
-  const description = descriptionInput.value;
-  const image = imageInput.value;
-  const price = priceInput.value;
-  const manufacturer = manufacturerInput.value;
+  const formData = new FormData();
+  formData.append('name', nameInput.value);
+  formData.append('category', categorySelectBox.value);
+  formData.append('manufacturer', manufacturerInput.value);
+  formData.append('description', descriptionInput.value);
+  formData.append('price', priceInput.value);
 
-  const data = {};
-
-  // 초기값과 다를 경우 api 요청에 사용할 data 객체에 넣어줌
-  if (name !== productData.name) {
-    data.name = name;
+  if (imageInput.files.length > 0) {
+    formData.append('image-file', imageInput.files[0]);
   }
 
-  if (category !== productData.category) {
-    data.category = category;
+  const { _id } = productData;
+
+  const headers = {};
+  if (!(formData instanceof FormData)) {
+    headers['Content-Type'] = 'application/json';
+    formData = JSON.stringify(formData);
   }
 
-  if (description !== productData.description) {
-    data.description = description;
+  const response = await fetch(`/products/amend/${_id}`, {
+    method: 'PATCH',
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    },
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error('상품 정보 수정 중 오류가 발생했습니다.');
   }
 
-  if (image !== productData.imageFile) {
-    data.imageFile = image;
-  }
-
-  if (price !== productData.price) {
-    data.price = price;
-  }
-
-  if (manufacturer !== productData.manufacturer) {
-    data.manufacturer = manufacturer;
-  }
-
-  // 만약 업데이트할 것이 없다면 (디폴트인 currentPassword만 있어서 1개라면), 종료함
-  const toUpdate = Object.keys(data);
-  if (toUpdate.length === 1) {
-    disableForm();
-    return alert('업데이트된 정보가 없습니다');
-  }
-
-  try {
-    const { _id } = productData;
-    // db에 수정된 정보 저장
-    await Api.patch('/products/amend', _id, data);
-
-    alert('상품 정보가 수정되었습니다.');
-    disableForm();
-    closeModal();
-  } catch (err) {
-    alert(`상풍정보 저장 과정에서 오류가 발생하였습니다: ${err}`);
-  }
+  alert('상품 정보가 수정되었습니다.');
+  window.location.href = `/product/${_id}`;
 }
