@@ -141,3 +141,13 @@ input:checked + .slider:before {
   -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
+
+.button.is-link {
+  background-color: #31420ed0;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-link:hover {
+  background-color: #607338ad;
+}
