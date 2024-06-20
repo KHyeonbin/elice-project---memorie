@@ -24,8 +24,8 @@
       ></a>
       <div class="header-links">
         <ul id="navbar">
-          <li><a href="/register" style="text-decoration: none; color: black">회원가입</a></li>
-          <li><a href="/login" style="text-decoration: none; color: black">로그인</a></li>
+          <li class="navbar-li"><a href="/register" style="text-decoration: none; color: black">회원가입</a></li>
+          <li class="navbar-li"><a href="/login" style="text-decoration: none; color: black">로그인</a></li>
         </ul>
         <a href="/sampleshopcart" class="header-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="bi bi-bag" viewBox="0 0 16 16">
@@ -159,6 +159,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <
     <footer class="footer">
       <div class="footer-menu row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
         <div class="col mb-3">
@@ -170,7 +171,7 @@
           </a>
           <p class="text-body-secondary">&copy; 2024</p>
 
-          <ul class="ul">
+          <ul class="footer-ul">
             <li>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -239,17 +240,21 @@
         <div class="col mb-3">
           <h3>　</h3>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">대표상품</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary yes-link">대표상품</a></li>
             <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
             <li class="nav-item mb-2">
               <div class="d-flex">
-                <a href="/handcare" class="nav-link p-0 text-body-secondary">핸드케어</a>
-                <a href="/bodycare" class="nav-link p-0 text-body-secondary" style="margin-left: 50px">바디케어</a>
+                <a href="/handcare" class="nav-link p-0 text-body-secondary yes-link">핸드케어</a>
+                <a href="/bodycare" class="nav-link p-0 text-body-secondary yes-link" style="margin-left: 50px"
+                  >바디케어</a
+                >
               </div>
             </li>
 
             <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary no-link">　</a></li>
-            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">브랜드소개</a></li>
+            <li class="nav-item mb-2">
+              <a href="/about" class="nav-link p-0 text-body-secondary yes-link">브랜드소개</a>
+            </li>
           </ul>
         </div>
       </div>

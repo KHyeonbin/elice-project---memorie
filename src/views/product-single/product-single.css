@@ -165,4 +165,13 @@ li {
   cursor: default;
   text-decoration: none;
   color: inherit;
+  text-align: left;
+}
+
+.yes-link {
+  text-align: left;
+}
+
+.sns-li {
+  float: none !important;
 }
