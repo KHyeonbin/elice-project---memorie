@@ -5,7 +5,7 @@ import { deleteFromDb, getFromDb, putToDb } from '/indexed-db.js';
 // 요소(element), input 혹은 상수
 const subtitleCart = document.querySelector('#subtitleCart');
 const nameInput = document.querySelector('#name');
-const numberumberInput = document.querySelector('#number');
+const numberInput = document.querySelector('#number');
 const postalCodeInput = document.querySelector('#postalCode');
 const searchAddressButton = document.querySelector('#searchAddressButton');
 const address1Input = document.querySelector('#address1');
@@ -33,7 +33,6 @@ function addAllEvents() {
   checkoutButton.addEventListener('click', doCheckout);
 }
 
-//수정필요
 // Daum 주소 API (사용 설명 https://postcode.map.daum.net/guide)
 function searchAddress() {
   new daum.Postcode({
@@ -82,13 +81,13 @@ async function insertOrderSummary() {
 
     alert(`구매할 제품이 없습니다. 제품을 선택해 주세요.`);
 
-    return window.location.replace(`/product/list?category=${categoryTitle}`);
+    return window.location.replace(`/`);
   }
 
   if (!hasItemToCheckout) {
     alert('구매할 제품이 없습니다. 장바구니에서 선택해 주세요.');
 
-    return window.location.replace('/cart');
+    return window.location.replace('/sampleshopcart');
   }
 
   // 화면에 보일 상품명
@@ -115,7 +114,7 @@ async function insertOrderSummary() {
     priceElem.innerText = `0원`;
   }
 
-  receiverNameInput.focus();
+  nameInput.focus();
 }
 
 // 결제 진행
@@ -142,26 +141,16 @@ async function doCheckout() {
   };
 
   try {
-    // 전체 주문을 등록함 (라우터 짜야할듯 오더정보저장)
-    const orderData = await Api.post('/orders/order', {
-      summaryTitle,
-      price,
-      address,
-      request,
-    });
-
-    const orderId = orderData._id;
-
     // 제품별로 주문아이템을 등록함
     for (const productId of selectedIds) {
       const { quantity, price } = await getFromDb('cart', productId);
       const totalPrice = quantity * price;
 
-      await Api.post('/api/orderitem', {
-        orderId,
-        productId,
-        quantity,
-        totalPrice,
+      await Api.post('/orders/order', {
+        name,
+        number,
+        address,
+        price,
       });
 
       // indexedDB에서 해당 제품 관련 데이터를 제거함
@@ -170,20 +159,10 @@ async function doCheckout() {
         data.ids = data.ids.filter((id) => id !== productId);
         data.selectedIds = data.selectedIds.filter((id) => id !== productId);
         data.productsCount -= 1;
+        ``;
         data.productsTotal -= totalPrice;
       });
     }
-
-    // 입력된 배송지정보를 유저db에 등록함
-    const data = {
-      phoneNumber: receiverPhoneNumber,
-      address: {
-        postalCode,
-        address1,
-        address2,
-      },
-    };
-    await Api.post('/api/user/deliveryinfo', data);
 
     alert('결제 및 주문이 정상적으로 완료되었습니다.\n감사합니다.');
     window.location.href = '/ordercomplete';

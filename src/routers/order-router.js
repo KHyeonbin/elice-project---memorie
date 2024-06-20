@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import is from '@sindresorhus/is';
+
 import { orderService } from '../services';
 
 const orderRouter = Router();
@@ -13,14 +15,14 @@ orderRouter.post('/order', async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const { isUser, name, email, password } = req.body;
+    const { name, number, address, price } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
-    const newOrder = await orderService.addMember({
-      isUser,
+    const newOrder = await orderService.addOrder({
       name,
-      email,
-      password,
+      number,
+      address,
+      price,
     });
 
     // 추가된 유저의 db 데이터를 프론트에 다시 보내줌

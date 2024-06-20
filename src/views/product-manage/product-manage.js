@@ -5,16 +5,20 @@ const productTableBody = document.querySelector('#productTableBody');
 const deleteButton = document.querySelector('.btn-danger');
 const saveButton = document.querySelector('.btn-info');
 
-// 페이지 로드 시 전체 제품 조회 및 표시
-document.addEventListener('DOMContentLoaded', async () => {
+// 페이지 로드 이벤트리스너
+document.addEventListener('DOMContentLoaded', handleLoadProductList);
+
+// 페이지 새로고침 실행 함수
+async function handleLoadProductList() {
   try {
+    productTableBody.innerHTML = ''; // 기존 목록 초기화
     const products = await Api.get('/products/productlist');
     displayProducts(products);
   } catch (err) {
     console.error('Failed to fetch products:', err);
     alert('문제가 발생하였습니다. 다시 시도해 주세요.');
   }
-});
+}
 
 // 제품 목록을 화면에 표시하는 함수
 function displayProducts(products) {
@@ -63,15 +67,24 @@ deleteButton.addEventListener('click', async () => {
 
   try {
     // DELETE 요청 보내기
-    const response = await Api.del('/products/productlist', '', { selectedIds });
-    if (response.success) {
-      alert('선택한 제품이 삭제되었습니다.');
-      await fetchProducts(); // 페이지 새로고침 대신 다시 불러오기
+    const response = await fetch('/products/productlist', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({ selectedIds }), // 선택된 ID들을 JSON 형식으로 파싱하여 body에 포함
+    });
+
+    if (response.ok) {
+      alert('등록된 상품을 성공적으로 제거하였습니다!');
+      await handleLoadProductList(); // 최신화된 상품 목록 불러오기
     } else {
-      alert('제품 삭제 실패: ' + response.message);
+      const errorContent = await response.json();
+      alert('제품 삭제 실패: ' + (errorContent.reason || 'Unknown error'));
     }
   } catch (err) {
-    console.error('Error deleting products:', err);
+    console.error('상품 삭제 에러:', err);
     alert('제품 삭제 중 문제가 발생했습니다. 다시 시도해 주세요.');
   }
 });
