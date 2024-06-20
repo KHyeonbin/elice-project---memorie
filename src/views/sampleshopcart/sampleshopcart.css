@@ -350,6 +350,7 @@ input[type='number']::-webkit-outer-spin-button {
   cursor: default;
   text-decoration: none;
   color: inherit;
+}
 
 /*컬러통일함!!!!*/
 .button.is-info {
