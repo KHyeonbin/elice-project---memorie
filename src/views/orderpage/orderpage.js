@@ -159,6 +159,7 @@ async function doCheckout() {
         data.ids = data.ids.filter((id) => id !== productId);
         data.selectedIds = data.selectedIds.filter((id) => id !== productId);
         data.productsCount -= 1;
+        ``;
         data.productsTotal -= totalPrice;
       });
     }
