@@ -320,3 +320,20 @@ input[type='number']::-webkit-outer-spin-button {
   text-decoration: none;
   color: inherit;
 }
+
+.button.is-info {
+  background-color: #31420ed0;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-info:hover {
+  background-color: #607338ad;
+  border-color: transparent;
+  color: #fff;
+}
+
+.order-summary {
+  background-color: #d4eaaa2b;
+  width: 100%;
+}
