@@ -22,6 +22,23 @@ class OrderService {
 
     return createdNewOrder;
   }
+
+  // 사용자 목록을 받음.
+  async getOrders() {
+    const orders = await this.orderModel.findAll();
+    return orders;
+  }
+
+  async updateOrderStatus(orderId, newStatus) {
+    const order = await this.orderModel.findById(orderId);
+    if (!order) {
+      throw new Error('Order not found');
+    }
+
+    order.status = newStatus;
+    await order.save();
+    return order;
+  }
 }
 
 const orderService = new OrderService(orderModel);
