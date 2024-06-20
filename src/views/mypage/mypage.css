@@ -112,6 +112,7 @@ td {
   vertical-align: top;
   word-wrap: break-word;
   word-break: break-all;
+  text-align: left;
 }
 
 .nav-item:hover .dropdown-menu {
