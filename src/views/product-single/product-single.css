@@ -74,6 +74,10 @@ li {
   font-weight: bold;
 }
 
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
 .product-detail-card .product-image {
   padding: 0;
 }

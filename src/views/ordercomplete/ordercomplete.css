@@ -101,6 +101,11 @@ li {
   font-size: 23px;
   font-weight: bold;
 }
+
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
 .title {
   margin-bottom: 30px;
 }
