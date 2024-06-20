@@ -63,6 +63,10 @@ button {
   font-weight: bold;
 }
 
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
 /* mypage css */
 .cart-header {
   border-bottom: #dbdbdb solid 1px;
@@ -337,7 +341,9 @@ input[type='number']::-webkit-outer-spin-button {
   list-style: none;
   padding-left: 0;
 }
-
+.footer-title {
+  font-size: 200% !important;
+}
 .no-link {
   pointer-events: none;
   cursor: default;
