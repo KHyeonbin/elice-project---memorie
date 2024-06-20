@@ -109,6 +109,7 @@ a {
   align-content: center;
   background-color: rgb(71, 16, 255);
   border: 1px solid rgba(0, 0, 0, 0.2);
+  color: white;
   border-radius: 20px;
 }
 .oc-btn:hover {
