@@ -38,6 +38,12 @@ export class ProductModel {
     const products = await Product.find({ category: categoryId });
     return products;
   }
+
+  // 선택된 상품 모두 제거
+  async deleteByIdArr(productIdArr) {
+    await Product.deleteMany({ _id: { $in: productIdArr } });
+    return;
+  }
 }
 
 const productModel = new ProductModel();
