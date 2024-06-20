@@ -2,6 +2,12 @@
   font-family: 'Noto Serif KR';
   box-sizing: border-box;
 }
+
+:root {
+  --color-bt: #31420ed0;
+  --color-hover: #607338ad;
+}
+
 /* header css */
 .header {
   display: flex;
@@ -124,7 +130,7 @@
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: var(--color-bt);
 }
 
 input:checked + .slider:before {
@@ -157,4 +163,10 @@ input:checked + .slider:before {
   cursor: default;
   text-decoration: none;
   color: inherit;
+}
+
+.button.is-link {
+  background-color: var(--color-bt);
+  border-color: transparent;
+  color: #fff;
 }
