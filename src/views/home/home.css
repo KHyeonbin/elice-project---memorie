@@ -137,13 +137,19 @@ li {
 .footer-menu {
   width: 90%;
 }
-.ul {
-  list-style: none;
-  padding-left: 0;
-}
+
 .no-link {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: inherit;
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  text-align: left;
+}
+
+.yes-link {
+  text-align: left;
+}
+
+.sns-li {
+  float: none !important;
 }

@@ -5,19 +5,6 @@
 button {
   font-family: 'Noto Serif KR';
 }
-a {
-  text-decoration: none;
-  text-align: center;
-  color: black;
-}
-ul {
-  list-style: none;
-  padding-left: 5px;
-}
-li {
-  float: left;
-  margin-right: 10px;
-}
 .header-logo {
   font-size: 50px;
   margin: 40px 0 30px 0;
@@ -363,6 +350,15 @@ input[type='number']::-webkit-outer-spin-button {
   cursor: default;
   text-decoration: none;
   color: inherit;
+  text-align: left;
+}
+
+.yes-link {
+  text-align: left;
+}
+
+.sns-li {
+  float: none !important;
 }
 
 /*컬러통일함!!!!*/

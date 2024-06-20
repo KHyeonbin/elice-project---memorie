@@ -15,7 +15,7 @@ ul {
   padding-left: 5px;
 }
 li {
-  float: left;
+  float: none;
   margin-right: 10px;
 }
 
@@ -176,4 +176,13 @@ li {
   cursor: default;
   text-decoration: none;
   color: inherit;
+  text-align: left;
+}
+
+.yes-link {
+  text-align: left;
+}
+
+.sns-li {
+  float: none !important;
 }
