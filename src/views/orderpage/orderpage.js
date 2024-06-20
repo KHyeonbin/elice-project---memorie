@@ -76,9 +76,6 @@ async function insertOrderSummary() {
   const hasItemToCheckout = selectedIds.length !== 0;
 
   if (!hasItemInCart) {
-    const categorys = await Api.get('/api/categorylist');
-    const categoryTitle = randomPick(categorys).title;
-
     alert(`구매할 제품이 없습니다. 제품을 선택해 주세요.`);
 
     return window.location.replace(`/`);
