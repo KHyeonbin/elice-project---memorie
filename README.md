@@ -31,3 +31,13 @@ Memoire는 소비자가 다양한 향수를 쉽게 찾고 구매할 수 있는 �
 | 김현빈 | FE, BE |
 | 정수연 | FE, BE |
 | 정상기 | FE, BE |
+
+
+## 주요 화면
+![image](https://github.com/user-attachments/assets/0feff911-0bfd-4b8f-914e-aee1a4f81751)
+
+![image](https://github.com/user-attachments/assets/d41b2d73-f4b3-460f-a985-70f81cedfe70)
+
+![image](https://github.com/user-attachments/assets/cf00cf2d-b787-494c-a990-6f27f9cba03a)
+
+![image](https://github.com/user-attachments/assets/af8d481d-caee-4b8e-b2ae-0a125f4d9d77)
